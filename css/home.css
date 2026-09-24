@@ -239,6 +239,20 @@
   position: relative;
   overflow: hidden;
 }
+.cta-banner::before {
+  content: "";
+  position: absolute;
+  inset: 0;
+  background-image: url("../images/gongyanggan-cta-bg.jpg");
+  background-size: cover;
+  background-position: center;
+  opacity: 0.28;
+  mix-blend-mode: overlay;
+}
+.cta-banner > * {
+  position: relative;
+  z-index: 1;
+}
 .cta-banner::after {
   content: "🙏";
   position: absolute;
