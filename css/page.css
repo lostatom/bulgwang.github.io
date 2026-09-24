@@ -15,12 +15,11 @@
 }
 /* 제목 내 '밥할머니' 인라인 로고 */
 .bh-inline-logo {
-  height: 1em;
+  height: 0.72em;
   width: auto;
   display: inline-block;
-  vertical-align: baseline;
-  transform: translateY(0.1em);
-  margin-right: 0.08em;
+  vertical-align: -0.06em;
+  margin-right: 0.06em;
 }
 .page-hero .lead { margin: 0 auto; }
 
