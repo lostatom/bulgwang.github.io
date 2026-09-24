@@ -85,31 +85,14 @@ document.addEventListener("DOMContentLoaded", () => {
     }
   });
 
-  // 법륜 3D 틸트 연출 (마우스 커서를 따라 부드럽게)
+  // 법륜 3D 틸트 연출 (마우스/자이로스코프를 따라 부드럽게)
   const tiltZone = document.querySelector(".hero-visual");
   const tiltOrbit = document.querySelector(".orbit");
-  if (tiltZone && tiltOrbit && window.matchMedia("(pointer: fine)").matches) {
+  if (tiltZone && tiltOrbit) {
     const maxTilt = 14; // 최대 기울기(도)
     let targetRX = 0, targetRY = 0;
     let curRX = 0, curRY = 0;
     let raf = null;
-
-    const onMove = (e) => {
-      const r = tiltZone.getBoundingClientRect();
-      const cx = r.left + r.width / 2;
-      const cy = r.top + r.height / 2;
-      const nx = (e.clientX - cx) / (r.width / 2);
-      const ny = (e.clientY - cy) / (r.height / 2);
-      targetRY = nx * maxTilt;
-      targetRX = -ny * maxTilt;
-      if (!raf) raf = requestAnimationFrame(animate);
-    };
-
-    const onLeave = () => {
-      targetRX = 0;
-      targetRY = 0;
-      if (!raf) raf = requestAnimationFrame(animate);
-    };
 
     const animate = () => {
       curRX += (targetRX - curRX) * 0.1;
@@ -128,7 +111,86 @@ document.addEventListener("DOMContentLoaded", () => {
       }
     };
 
-    tiltZone.addEventListener("mousemove", onMove);
-    tiltZone.addEventListener("mouseleave", onLeave);
+    const setTarget = (rx, ry) => {
+      targetRX = rx;
+      targetRY = ry;
+      if (!raf) raf = requestAnimationFrame(animate);
+    };
+
+    // 1) 마우스 기기(데스크톱): 마우스 커서를 따라 틸트
+    if (window.matchMedia("(pointer: fine)").matches) {
+      const onMove = (e) => {
+        const r = tiltZone.getBoundingClientRect();
+        const cx = r.left + r.width / 2;
+        const cy = r.top + r.height / 2;
+        const nx = (e.clientX - cx) / (r.width / 2);
+        const ny = (e.clientY - cy) / (r.height / 2);
+        setTarget(-ny * maxTilt, nx * maxTilt);
+      };
+      const onLeave = () => setTarget(0, 0);
+      tiltZone.addEventListener("mousemove", onMove);
+      tiltZone.addEventListener("mouseleave", onLeave);
+    }
+
+    // 2) 터치 기기(휴대폰/패드): 자이로스코프(기기 기울기)를 따라 틸트
+    if (window.DeviceOrientationEvent && !window.matchMedia("(pointer: fine)").matches) {
+      let gyroSupported = false;
+      let beta0 = null, gamma0 = null; // 기준(초기) 기울기
+
+      const onOrientation = (e) => {
+        if (e.beta === null || e.gamma === null) return;
+        if (!gyroSupported) {
+          // 첫 유효 값으로 기준점 설정 (현재 드는 각도를 중립으로)
+          beta0 = e.beta;
+          gamma0 = e.gamma;
+          gyroSupported = true;
+        }
+        // beta(앞뒤, -180~180) -> rotateX / gamma(좌우, -90~90) -> rotateY
+        const dBeta = clamp(e.beta - beta0, -45, 45);
+        const dGamma = clamp(e.gamma - gamma0, -45, 45);
+        // 기울기를 maxTilt 범위로 매핑 (45도 -> maxTilt)
+        const rx = (-dBeta / 45) * maxTilt;
+        const ry = (dGamma / 45) * maxTilt;
+        setTarget(rx, ry);
+      };
+
+      const clamp = (v, min, max) => Math.max(min, Math.min(max, v));
+
+      // iOS 13+ 권한 요청 (사용자 제스처 필요할 수 있음)
+      let permissionRequested = false;
+      const requestPermission = () => {
+        if (permissionRequested) return;
+        permissionRequested = true;
+        if (typeof DeviceOrientationEvent.requestPermission === "function") {
+          DeviceOrientationEvent.requestPermission()
+            .then((state) => {
+              if (state === "granted") {
+                window.addEventListener("deviceorientation", onOrientation);
+              } else {
+                // 거부 시 첫 터치에서 재요청할 수 있도록 허용
+                permissionRequested = false;
+              }
+            })
+            .catch(() => {
+              permissionRequested = false;
+            });
+        } else {
+          window.addEventListener("deviceorientation", onOrientation);
+        }
+      };
+
+      requestPermission();
+
+      // iOS는 사용자 제스처가 필요하므로, 첫 터치 시 권한 재요청
+      if (typeof DeviceOrientationEvent.requestPermission === "function") {
+        const onFirstTouch = () => {
+          requestPermission();
+          window.removeEventListener("touchstart", onFirstTouch);
+          window.removeEventListener("click", onFirstTouch);
+        };
+        window.addEventListener("touchstart", onFirstTouch, { once: true });
+        window.addEventListener("click", onFirstTouch, { once: true });
+      }
+    }
   }
 });
