@@ -188,6 +188,17 @@
   flex-direction: column;
   gap: 6px;
 }
+.dharma-talk-buttons {
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+  align-items: flex-start;
+}
+.dharma-talk-buttons .btn {
+  text-align: left;
+  white-space: normal;
+  line-height: 1.5;
+}
 .dharma-talk h3 {
   margin: 14px 0 2px;
   font-size: 1.1rem;
