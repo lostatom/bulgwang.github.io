@@ -3,49 +3,184 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>불광동절 웹사이트</title>
-  <style>
-    :root { color-scheme: light dark; }
-    * { box-sizing: border-box; margin: 0; padding: 0; }
-    body {
-      font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Noto Sans KR", sans-serif;
-      min-height: 100vh;
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
-      color: #fff;
-      padding: 2rem;
-    }
-    .card {
-      text-align: center;
-      max-width: 640px;
-    }
-    h1 {
-      font-size: 3rem;
-      margin-bottom: 1rem;
-      letter-spacing: 0.05em;
-    }
-    p {
-      font-size: 1.25rem;
-      opacity: 0.9;
-      margin-bottom: 2rem;
-    }
-    .badge {
-      display: inline-block;
-      padding: 0.5rem 1.25rem;
-      background: rgba(255,255,255,0.2);
-      border: 1px solid rgba(255,255,255,0.4);
-      border-radius: 999px;
-      font-size: 0.9rem;
-    }
-  </style>
+  <title>불광동절 — 밥이 곧 하늘 · 부처님의 은총이 비치는 곳</title>
+  <meta name="description" content="서울 은평구 불광동의 포교당 '불광동절'. 밥할머니의 보시와 지혜의 정신을 이어 무료급식 공양간을 운영하는 세계불교 정법보시종 사찰입니다.">
+  <link rel="preconnect" href="https://cdn.jsdelivr.net">
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/orioncactus/pretendard@v1.3.9/dist/web/variable/pretendardvariable-dynamic-subset.min.css">
+  <link rel="stylesheet" href="css/style.css">
+  <link rel="stylesheet" href="css/home.css">
 </head>
 <body>
-  <div class="card">
-    <h1>불광동절</h1>
-    <p>환영합니다! 이곳은 불광동절 웹사이트입니다.</p>
-    <span class="badge">🚧 GitHub Pages 준비 완료</span>
+  <div class="bg-glow">
+    <div class="blob b1"></div>
+    <div class="blob b2"></div>
+    <div class="blob b3"></div>
   </div>
+
+  <nav class="nav">
+    <div class="nav-inner">
+      <a href="index.html" class="brand">
+        <span class="mark">🪷</span>
+        <span>불광동절<small>BULGWANG-DONG JEOL</small></span>
+      </a>
+      <div class="nav-links">
+        <a href="index.html" class="active">홈</a>
+        <a href="about.html">불광동절 안내</a>
+        <a href="babhalmeoni.html">밥할머니 기념사업</a>
+        <a href="dharma.html">부처님과 그의 담마<span class="soon">준비중</span></a>
+        <a href="jikji.html">직지심경<span class="soon">준비중</span></a>
+        <a href="muah-ariang.html">무아아리랑<span class="soon">준비중</span></a>
+      </div>
+      <a href="babhalmeoni.html#donate" class="nav-cta">🙏 후원하기</a>
+      <button class="nav-toggle" aria-label="메뉴">☰</button>
+    </div>
+  </nav>
+
+  <!-- ===== 히어로 ===== -->
+  <header class="hero">
+    <div class="container hero-inner">
+      <div>
+        <span class="eyebrow reveal">서울 은평구 불광동</span>
+        <h1 class="display reveal d1">
+          밥이 곧 하늘.<br>
+          <span class="grad-text">자비의 빛</span>을 나누는 곳
+        </h1>
+        <p class="lead reveal d2">
+          불광동절은 조선 시대 굶주린 민중을 자애로운 손길로 보살핀
+          <strong>‘밥할머니’</strong>의 대자비 정신을 오늘의 도심에서 다시 꽃피우는
+          세계불교 정법보시종 사찰입니다.
+        </p>
+        <div class="hero-actions reveal d3">
+          <a href="about.html" class="btn btn-primary">절 둘러보기 →</a>
+          <a href="babhalmeoni.html" class="btn btn-ghost">밥할머니 이야기</a>
+        </div>
+        <div class="hero-meta reveal d4">
+          <div class="m"><b>1592</b><span>임진왜란, 밥할머니의 보시행</span></div>
+          <div class="m"><b>430+</b><span>년을 이어온 정신</span></div>
+          <div class="m"><b>매주</b><span>무료급식 공양 나눔</span></div>
+        </div>
+      </div>
+      <div class="hero-visual reveal d2">
+        <div class="orbit">
+          <div class="orbit-ring"></div>
+          <div class="orbit-ring r2"></div>
+          <div class="orbit-ring r3"></div>
+          <div class="orbit-dot" style="top:0;left:50%;"></div>
+          <div class="orbit-dot" style="bottom:22%;right:-2%;"></div>
+          <div class="orbit-dot" style="bottom:22%;left:-2%;"></div>
+          <div class="orbit-core">☸️</div>
+        </div>
+      </div>
+    </div>
+  </header>
+
+  <!-- ===== 핵심 정신 ===== -->
+  <section class="section" style="padding-top:40px;">
+    <div class="container">
+      <div class="reveal" style="max-width:640px; margin-bottom:48px;">
+        <span class="eyebrow">우리의 정신</span>
+        <h2 class="heading" style="margin-top:14px;">마음이 일어난 그 자리에서<br>즉각 베푸는 힘</h2>
+      </div>
+      <div class="grid grid-3">
+        <div class="card reveal">
+          <div class="concept-icon">🍚</div>
+          <h3>즉심시불(卽心是佛)</h3>
+          <p>‘마음이 곧 부처다.’ 일어난 마음 바로 그 자리에서 망설임 없이 베풀고 실천하는 마음이야말로 부처의 마음입니다.</p>
+        </div>
+        <div class="card reveal d1">
+          <div class="concept-icon">🕊️</div>
+          <h3>노블레스 오블리주</h3>
+          <p>높은 사회적 신분만큼 이웃과 나라를 위해 앞장서서 베풀고 헌신하는 도덕적 책임. 밥할머니가 몸소 실천한 가르침입니다.</p>
+        </div>
+        <div class="card reveal d2">
+          <div class="concept-icon">🌾</div>
+          <h3>식이천(食以天)</h3>
+          <p>‘밥이 곧 하늘.’ 밥 한 끼는 생명을 살리는 가장 성스럽고 엄숙한 존재이며, 보시의 가장 한가운데에 있습니다.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ===== 밥할머니 스토리 ===== -->
+  <section class="section" style="background: var(--bg-2);">
+    <div class="container">
+      <div class="reveal" style="max-width:640px; margin-bottom:16px;">
+        <span class="eyebrow">밥할머니</span>
+        <h2 class="heading" style="margin-top:14px;">보시와 지혜로<br>백성을 구원한 여인</h2>
+        <p class="lead" style="margin-top:14px;">임진왜란이 휩쓸던 1592년, 도성을 떠난 임금을 뒤로하고 자기 집 창고를 열어 굶주린 백성들을 품었던 밀양 박씨 여인. 우리는 그를 ‘밥할머니’라 부릅니다.</p>
+      </div>
+      <div class="timeline">
+        <div class="tl-item reveal">
+          <div class="tl-year">1592</div>
+          <div class="tl-body">
+            <h4>창고를 열어 백성을 구하다</h4>
+            <p>선조 임금이 서울을 버리고 피란길에 오르자, 가난한 백성들이 굶주림에 빠졌습니다. 밥할머니는 한 치의 망설임 없이 집안의 창고를 열어 곡식을 풀어 중생들을 품었습니다.</p>
+          </div>
+        </div>
+        <div class="tl-item reveal">
+          <div class="tl-year">행주산성</div>
+          <div class="tl-body">
+            <h4>주먹밥으로 군사들을 돕다</h4>
+            <p>서산대사(휴정 스님)의 승군을 돕기 위해 수많은 여인들을 이끌고 권율 장군이 분전하는 행주산성으로 가 석전용 돌을 앞치마로 나르고, 의군에게 주먹밥을 제공했습니다.</p>
+          </div>
+        </div>
+        <div class="tl-item reveal">
+          <div class="tl-year">지혜</div>
+          <div class="tl-body">
+            <h4>노적봉의 묘책</h4>
+            <p>북한산성 일대 지형에 밝아 노적봉에 볏단을 쌓고, 계곡에 석회를 풀어 쌀뜨물처럼 보이게 하여 군량미가 넘치는 것처럼 왜군을 속여 많은 생명을 구했습니다.</p>
+          </div>
+        </div>
+      </div>
+      <div class="reveal" style="margin-top:28px;">
+        <a href="babhalmeoni.html" class="btn btn-gold">밥할머니 기념사업 알아보기 →</a>
+      </div>
+    </div>
+  </section>
+
+  <!-- ===== 공양간 ===== -->
+  <section class="section">
+    <div class="container">
+      <div class="cta-banner reveal">
+        <h2>밥할머니 공양간에서<br>따뜻한 한 끼를 나눕니다</h2>
+        <p style="opacity:0.92; margin-bottom:28px; max-width:560px; margin-left:auto; margin-right:auto;">
+          주 1회, 지역 이웃들에게 비빔밥 한 그릇을 올립니다.<br>
+          정성어린 공양주(자원봉사자)의 손길을 기다리고 있습니다.
+        </p>
+        <a href="about.html#gongyang" class="btn">공양간 둘러보기 →</a>
+      </div>
+    </div>
+  </section>
+
+  <footer class="footer">
+    <div class="footer-inner">
+      <div>
+        <a href="index.html" class="brand" style="margin-bottom:16px;">
+          <span class="mark">🪷</span>
+          <span>불광동절<small>BULGWANG-DONG JEOL</small></span>
+        </a>
+        <p style="max-width:360px;">세계불교 정법보시종 ‘불광동 절’ — 밥할머니의 대자비 정신을 이어 보시와 나눔을 실천하는 도심 속 도량입니다.</p>
+      </div>
+      <div>
+        <h4>바로가기</h4>
+        <a href="about.html">불광동절 안내</a>
+        <a href="babhalmeoni.html">밥할머니 기념사업</a>
+        <a href="dharma.html">부처님과 그의 담마</a>
+        <a href="jikji.html">직지심경</a>
+        <a href="muah-ariang.html">무아아리랑</a>
+      </div>
+      <div>
+        <h4>찾아오시는 길</h4>
+        <p>서울특별시 은평구 불광동 129번지</p>
+        <p>☎ 010-6805-1335</p>
+        <p>담마다나(선선) 스님</p>
+      </div>
+    </div>
+    <div class="footer-bottom">
+      © 2024 불광동절 · 세계불교 정법보시종 · All rights reserved.
+    </div>
+  </footer>
+
+  <script src="js/main.js"></script>
 </body>
 </html>
