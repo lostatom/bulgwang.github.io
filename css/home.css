@@ -110,6 +110,17 @@
   object-fit: contain;
   filter: drop-shadow(0 0 40px rgba(200, 148, 45, 0.35));
 }
+.orbit-dots {
+  position: absolute;
+  inset: 0;
+  transform-style: preserve-3d;
+  animation: spinSlow 45s linear infinite;
+  will-change: transform;
+}
+@keyframes spinSlow {
+  from { transform: rotate(0deg); }
+  to { transform: rotate(360deg); }
+}
 .orbit-dot {
   position: absolute;
   width: 12px;
