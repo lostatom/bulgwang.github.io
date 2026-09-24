@@ -317,6 +317,54 @@
   .protest-item img { height: 150px; }
 }
 
+/* 비구계 수지 이미지 갤러리 (어두운 섹션용) */
+.bhikkhu-gallery {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: 14px;
+}
+.bhikkhu-item {
+  margin: 0;
+  border-radius: 14px;
+  overflow: hidden;
+  border: 1px solid rgba(255, 255, 255, 0.12);
+  background: rgba(255, 255, 255, 0.04);
+}
+.bhikkhu-item.bhikkhu-wide {
+  grid-column: 1 / -1;
+}
+.bhikkhu-item img {
+  width: 100%;
+  height: 240px;
+  object-fit: cover;
+  display: block;
+}
+.bhikkhu-item.bhikkhu-wide img {
+  height: auto;
+  max-height: 420px;
+  object-fit: contain;
+  background: rgba(0, 0, 0, 0.2);
+}
+.bhikkhu-item figcaption {
+  padding: 9px 12px;
+  font-size: 0.82rem;
+  color: #d8c9b4;
+  text-align: center;
+}
+.bhikkhu-caption {
+  text-align: center;
+  color: #e8d9c2;
+  font-size: 0.95rem;
+  line-height: 1.7;
+  font-style: italic;
+}
+@media (max-width: 640px) {
+  .bhikkhu-gallery {
+    grid-template-columns: 1fr;
+  }
+  .bhikkhu-item img { height: 200px; }
+}
+
 /* 신승불교 상세 섹션 — 어두운 배경으로 구분 */
 .section-navayana {
   background: linear-gradient(160deg, #3a2f28 0%, #4a352c 55%, #5a3a2c 100%);
