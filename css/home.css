@@ -52,8 +52,8 @@
 }
 .orbit {
   position: relative;
-  width: 320px;
-  height: 320px;
+  width: 400px;
+  height: 400px;
   max-width: 100%;
   display: grid;
   place-items: center;
@@ -81,9 +81,8 @@
 }
 .orbit-core {
   position: relative;
-  width: 200px;
-  height: 200px;
-  border-radius: 50%;
+  width: 380px;
+  height: 207px;
   background: transparent;
   display: grid;
   place-items: center;
@@ -91,9 +90,8 @@
 .dharma-wheel-img {
   width: 100%;
   height: 100%;
-  object-fit: contain;
-  border-radius: 50%;
-  filter: drop-shadow(0 0 50px rgba(200, 148, 45, 0.45));
+  object-fit: cover;
+  filter: drop-shadow(0 0 40px rgba(200, 148, 45, 0.4));
 }
 .orbit-dot {
   position: absolute;
@@ -277,7 +275,7 @@
   .orbit { width: 240px; height: 240px; }
   .orbit-ring.r2 { inset: 26px; }
   .orbit-ring.r3 { inset: 54px; }
-  .orbit-core { width: 150px; height: 150px; }
+  .orbit-core { width: 240px; height: 132px; }
   .tl-item { grid-template-columns: 64px 1fr; }
   .tl-item::before { left: 26px; }
   .dharma-scroll { padding: 32px 24px 28px; }
