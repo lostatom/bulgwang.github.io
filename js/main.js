@@ -84,4 +84,50 @@ document.addEventListener("DOMContentLoaded", () => {
       document.querySelectorAll(".dharma-modal.open").forEach((m) => closeModal(m));
     }
   });
+
+  // 법륜 3D 틸트 연출 (마우스 커서를 따라 부드럽게)
+  const tiltZone = document.querySelector(".hero-visual");
+  const tiltCore = document.querySelector(".orbit-core");
+  if (tiltZone && tiltCore && window.matchMedia("(pointer: fine)").matches) {
+    const maxTilt = 12; // 최대 기울기(도)
+    let targetRX = 0, targetRY = 0;
+    let curRX = 0, curRY = 0;
+    let raf = null;
+
+    const onMove = (e) => {
+      const r = tiltZone.getBoundingClientRect();
+      const cx = r.left + r.width / 2;
+      const cy = r.top + r.height / 2;
+      const nx = (e.clientX - cx) / (r.width / 2);
+      const ny = (e.clientY - cy) / (r.height / 2);
+      targetRY = nx * maxTilt;
+      targetRX = -ny * maxTilt;
+      if (!raf) raf = requestAnimationFrame(animate);
+    };
+
+    const onLeave = () => {
+      targetRX = 0;
+      targetRY = 0;
+      if (!raf) raf = requestAnimationFrame(animate);
+    };
+
+    const animate = () => {
+      curRX += (targetRX - curRX) * 0.1;
+      curRY += (targetRY - curRY) * 0.1;
+      tiltCore.style.transform =
+        "perspective(900px) rotateX(" + curRX.toFixed(2) + "deg) rotateY(" + curRY.toFixed(2) + "deg)";
+
+      // 목표에 거의 다다르면 루프 정지 (성능 절약)
+      const done =
+        Math.abs(targetRX - curRX) < 0.05 && Math.abs(targetRY - curRY) < 0.05;
+      if (done) {
+        raf = null;
+      } else {
+        raf = requestAnimationFrame(animate);
+      }
+    };
+
+    tiltZone.addEventListener("mousemove", onMove);
+    tiltZone.addEventListener("mouseleave", onLeave);
+  }
 });
