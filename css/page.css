@@ -207,6 +207,82 @@
   place-items: center;
 }
 
+/* 암베드카르 박사 소개 프로필 카드 */
+.profile-card {
+  display: flex;
+  gap: 32px;
+  align-items: center;
+  max-width: 860px;
+  margin: 0 auto;
+  background: var(--surface);
+  border: 1px solid rgba(200, 148, 45, 0.18);
+  border-radius: 22px;
+  padding: 32px;
+  box-shadow: 0 18px 50px rgba(140, 47, 57, 0.06);
+}
+.profile-card-img {
+  flex: 0 0 200px;
+  width: 200px;
+  height: 200px;
+  border-radius: 16px;
+  overflow: hidden;
+  border: 1px solid var(--border);
+}
+.profile-card-img img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  display: block;
+}
+.profile-card-body {
+  flex: 1;
+  min-width: 0;
+}
+.profile-card-body .eyebrow { justify-content: flex-start; }
+.profile-card-body h3 {
+  margin: 6px 0 4px;
+  font-size: 1.5rem;
+  font-weight: 800;
+  color: var(--ink);
+  letter-spacing: -0.01em;
+}
+.profile-card-date {
+  margin: 0 0 12px;
+  color: var(--muted);
+  font-size: 0.92rem;
+  letter-spacing: 0.02em;
+}
+.profile-card-desc {
+  margin: 0 0 16px;
+  color: var(--muted);
+  font-size: 1.0rem;
+  line-height: 1.7;
+}
+.profile-card-quote {
+  margin: 0;
+  padding: 12px 16px;
+  border-left: 3px solid var(--gold);
+  background: var(--surface-2);
+  border-radius: 0 var(--radius-sm) var(--radius-sm) 0;
+  color: #8c2f39;
+  font-size: 0.95rem;
+  line-height: 1.6;
+}
+@media (max-width: 640px) {
+  .profile-card {
+    flex-direction: column;
+    text-align: center;
+    padding: 24px;
+  }
+  .profile-card-img {
+    flex: none;
+    width: 150px;
+    height: 150px;
+  }
+  .profile-card-body .eyebrow { justify-content: center; }
+  .profile-card-quote { text-align: left; }
+}
+
 /* ============ 이미지 ============ */
 .img-frame {
   border-radius: 22px;
