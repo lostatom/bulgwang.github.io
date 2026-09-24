@@ -210,15 +210,20 @@
 /* 암베드카르 박사 소개 프로필 카드 */
 .profile-card {
   display: flex;
-  gap: 32px;
-  align-items: center;
+  flex-direction: column;
+  gap: 28px;
   max-width: 860px;
   margin: 0 auto;
   background: var(--surface);
   border: 1px solid rgba(200, 148, 45, 0.18);
   border-radius: 22px;
-  padding: 32px;
+  padding: 36px;
   box-shadow: 0 18px 50px rgba(140, 47, 57, 0.06);
+}
+.profile-card-top {
+  display: flex;
+  gap: 32px;
+  align-items: center;
 }
 .profile-card-img {
   flex: 0 0 200px;
@@ -246,6 +251,13 @@
   color: var(--ink);
   letter-spacing: -0.01em;
 }
+.profile-card-en {
+  font-size: 0.95rem;
+  font-weight: 600;
+  color: var(--muted);
+  margin-left: 6px;
+  letter-spacing: 0;
+}
 .profile-card-date {
   margin: 0 0 12px;
   color: var(--muted);
@@ -268,11 +280,33 @@
   font-size: 0.95rem;
   line-height: 1.6;
 }
+
+/* 서약문 (카드 하단 영역) */
+.profile-card-vows {
+  border-top: 1px solid var(--border);
+  padding-top: 26px;
+}
+.profile-card-vows h3 {
+  margin: 0 0 8px;
+  font-size: 1.25rem;
+  font-weight: 800;
+  color: var(--ink);
+}
+.profile-card-vows-desc {
+  margin: 0 0 20px;
+  color: var(--muted);
+  font-size: 0.95rem;
+  line-height: 1.7;
+}
+
 @media (max-width: 640px) {
   .profile-card {
     flex-direction: column;
     text-align: center;
     padding: 24px;
+  }
+  .profile-card-top {
+    flex-direction: column;
   }
   .profile-card-img {
     flex: none;
@@ -281,6 +315,7 @@
   }
   .profile-card-body .eyebrow { justify-content: center; }
   .profile-card-quote { text-align: left; }
+  .profile-card-vows { text-align: left; }
 }
 
 /* 1인 시위 갤러리 */
