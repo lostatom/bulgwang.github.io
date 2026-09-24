@@ -430,44 +430,115 @@
   color: #e8d9c2;
 }
 
-/* ============ 불교계 소식 임베드 ============ */
+/* ============ 주간불교소식 ============ */
 .page-hero-compact {
   padding: 70px 0 30px;
 }
 .container-wide {
   max-width: 1100px;
 }
-.news-embed-section {
-  padding: 10px 0 50px;
+.news-section {
+  padding: 10px 0 60px;
 }
-.news-embed-frame {
-  background: #fff;
+.news-issue {
+  background: var(--surface);
   border: 1px solid var(--border);
-  border-radius: 20px;
-  overflow: hidden;
+  border-radius: 24px;
   box-shadow: var(--shadow-soft);
+  padding: 40px;
+  margin-bottom: 32px;
 }
-.craft-embed {
-  display: block;
-  width: 100%;
-  height: 82vh;
-  min-height: 600px;
-  border: none;
+.news-issue-head {
+  border-bottom: 1px solid var(--border);
+  padding-bottom: 24px;
+  margin-bottom: 28px;
 }
-.news-embed-note {
-  margin-top: 18px;
-  text-align: center;
-  color: var(--muted);
+.news-date {
+  display: inline-block;
   font-size: 0.9rem;
+  font-weight: 600;
+  color: var(--accent);
+  margin-bottom: 8px;
 }
-.news-embed-note a {
+.news-issue-title {
+  font-size: 1.7rem;
+  font-weight: 800;
+  margin: 0 0 12px;
+}
+.news-summary {
+  color: var(--muted);
+  line-height: 1.7;
+  margin: 0;
+}
+.news-block {
+  margin-bottom: 28px;
+}
+.news-block:last-child {
+  margin-bottom: 0;
+}
+.news-cat {
+  font-size: 1.15rem;
+  font-weight: 700;
+  margin: 0 0 14px;
+  display: flex;
+  align-items: center;
+  gap: 8px;
+}
+.news-item {
+  padding: 14px 0;
+  border-bottom: 1px dashed var(--border);
+}
+.news-item:last-child {
+  border-bottom: none;
+}
+.news-item h4 {
+  font-size: 1.05rem;
+  font-weight: 700;
+  margin: 0 0 6px;
+  line-height: 1.4;
+}
+.news-item p {
+  color: var(--muted);
+  line-height: 1.7;
+  margin: 0;
+  font-size: 0.95rem;
+}
+.news-item a {
   color: var(--accent);
   font-weight: 600;
   text-decoration: none;
+  white-space: nowrap;
 }
-.news-embed-note a:hover { text-decoration: underline; }
+.news-item a:hover { text-decoration: underline; }
+.news-archive {
+  background: var(--surface);
+  border: 1px solid var(--border);
+  border-radius: 20px;
+  padding: 28px 32px;
+  box-shadow: var(--shadow-soft);
+}
+.news-archive-list {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+}
+.news-archive-list li {
+  padding: 10px 0;
+  border-bottom: 1px solid var(--border);
+}
+.news-archive-list li:last-child {
+  border-bottom: none;
+}
+.news-archive-list a {
+  color: var(--ink);
+  text-decoration: none;
+  font-weight: 500;
+}
+.news-archive-list a:hover {
+  color: var(--accent);
+}
 @media (max-width: 640px) {
-  .craft-embed { height: 75vh; min-height: 480px; }
+  .news-issue { padding: 24px 20px; }
 }
 
 /* ============ 이미지 ============ */
