@@ -46,13 +46,16 @@
           <span class="grad-text">자비의 빛</span>을 나누는 곳
         </h1>
         <p class="lead reveal d2">
-          불광동절은 조선 시대 굶주린 민중을 자애로운 손길로 보살핀
-          <strong>‘밥할머니’</strong>의 대자비 정신을 오늘의 도심에서 다시 꽃피우는
-          세계불교 정법보시종 사찰입니다.
+          서울 불광동, 부처님佛 빛光 고을洞. 이곳의 이름이 곧 사찰의 소임입니다.
+          은총의 빛으로 세상을 살피고, 나눔과 평등의 등불을 밝히는
+          세계불교 정법보시종 <strong>‘불광동 절’</strong>입니다.
         </p>
         <div class="hero-actions reveal d3">
           <a href="about.html" class="btn btn-primary">절 둘러보기 →</a>
           <a href="babhalmeoni.html" class="btn btn-ghost">밥할머니 이야기</a>
+        </div>
+        <div class="hero-read reveal d3" style="margin-top:18px;">
+          <button class="btn btn-ghost" id="dharmaOpen" style="font-size:0.9rem;">🌸 상세 읽기 — 불기 2570년 봉축법어</button>
         </div>
         <div class="hero-meta reveal d4">
           <div class="m"><b>1592</b><span>임진왜란, 밥할머니의 보시행</span></div>
@@ -68,7 +71,9 @@
           <div class="orbit-dot" style="top:0;left:50%;"></div>
           <div class="orbit-dot" style="bottom:22%;right:-2%;"></div>
           <div class="orbit-dot" style="bottom:22%;left:-2%;"></div>
-          <div class="orbit-core">☸️</div>
+          <div class="orbit-core">
+            <img src="images/dharma-wheel-hero.png" alt="법륜" class="dharma-wheel-img">
+          </div>
         </div>
       </div>
     </div>
@@ -180,6 +185,42 @@
       © 2024 불광동절 · 세계불교 정법보시종 · All rights reserved.
     </div>
   </footer>
+
+  <!-- 봉축법어 모달 -->
+  <div class="dharma-modal" id="dharmaModal" aria-hidden="true">
+    <div class="dharma-overlay" data-close></div>
+    <div class="dharma-dialog" role="dialog" aria-modal="true" aria-labelledby="dharmaTitle">
+      <button class="dharma-close" data-close aria-label="닫기">✕</button>
+      <div class="dharma-scroll">
+        <span class="eyebrow">[봉축법어]</span>
+        <h2 class="heading" id="dharmaTitle" style="margin:12px 0 8px;">모든 생명이 스스로 존귀한<br>정법(正法)의 세상으로</h2>
+        <p style="color:var(--muted); font-size:0.95rem;">사바세계의 고통을 걷어내고, 나눔과 평등의 등불을 밝힙시다.</p>
+
+        <div class="dharma-body">
+          <p>불기 2570년 부처님 오신 날을 맞아, 온 누리에 자비와 광명이 가득하기를 서원합니다.</p>
+          <p>부처님께서 이 땅에 오신 뜻은 명확합니다. 고통 속에 병든 중생들에게 스스로의 무지를 깨우치게 하고, 가족과 이웃, 나아가 나라를 구하며, 방황하는 모든 이들에게 현실과 내생을 아우르는 참된 행복의 길을 열어주기 위함입니다.</p>
+
+          <h3>1. 천상천하 유아독존(天上天下 唯我獨尊)의 참뜻</h3>
+          <p>부처님께서는 "하늘 위와 하늘 아래 나 홀로 존귀하다"고 말씀하셨습니다. 여기서 '나(我)'는 부처님 개인을 넘어선 모든 중생을 의미합니다. 자연은 자연대로, 사람은 사람대로, 이름 없는 미물조차도 그 자체로 온전히 존귀한 존재라는 선언입니다. 삼계(욕계·색계·무색계)의 모든 고통을 내가 마땅히 편안케 하리라는 그 서원이 오늘날 우리 불자들이 이어받아야 할 시대적 사명입니다.</p>
+
+          <h3>2. 정법(正法)과 보시(布施)의 실천</h3>
+          <p>우리 세계불교 정법보시종은 '절'이라는 순우리말에 담긴 소박하고도 깊은 신앙심을 바탕으로, 부처님의 상수제자인 사리뿟다·목갈라나 존자님의 지혜와 신통을 우러르며 수행 정진하고 있습니다.</p>
+          <p>특히 임진왜란의 숨은 영웅 '밥 할머니'의 보시와 지혜, 화합의 정신은 우리 한국 불교가 지켜온 실천적 자비의 정수입니다. 또한 인도 신불교 운동의 선구자 암베드카르 박사가 부르짖은 평등과 해방, 교육의 정신은 현대 사회의 갈등을 치유할 소중한 약방문입니다.</p>
+
+          <h3>3. 함께 걷는 불자의 길</h3>
+          <p>법(法)을 베푸는 자라는 이름의 '담마다나(Dhamma-dāno)' 정신으로 돌아갑시다. 단순히 경전을 읽는 데 그치지 않고, 역사적 인물의 고결한 정신과 현대적 평등 사상을 조화시켜 살아있는 자신의 가슴속 법당을 만들어야 합니다.</p>
+          <p>우주 삼라만상의 모든 현상을 긍정하고 밝게 보는 불자가 됩시다. 오늘 우리가 밝히는 연등은 단순한 불빛이 아니라, 차별 없는 평등의 빛이며 굶주린 이웃을 돌보는 보시의 빛입니다.</p>
+
+          <blockquote class="dharma-quote">"삼계가 모두 고통에 헤매이니, 내가 마땅히 이를 편안케 하리라."</blockquote>
+
+          <p>이 사자후를 가슴에 새기며, 우리 모두 '부처님 오신 날'을 맞아 크게 발심(發心)합시다. 나와 남이 다르지 않음을 깨닫고 함께 선업(善業)을 지어나갈 때, 비로소 이 땅은 부처님이 꿈꾸신 정토가 될 것입니다.</p>
+          <p>사바세계 모든 존재의 평화와 행복을 간절히 기원합니다.</p>
+
+          <p class="dharma-sign">불기 2570년 5월 7일<br>세계불교 정법보시종 종정 <strong>담마다나</strong> 合掌</p>
+        </div>
+      </div>
+    </div>
+  </div>
 
   <script src="js/main.js"></script>
 </body>

@@ -81,14 +81,19 @@
 }
 .orbit-core {
   position: relative;
-  width: 130px;
-  height: 130px;
+  width: 200px;
+  height: 200px;
   border-radius: 50%;
-  background: var(--grad-main);
+  background: transparent;
   display: grid;
   place-items: center;
-  font-size: 3rem;
-  box-shadow: 0 0 80px rgba(200, 148, 45, 0.5);
+}
+.dharma-wheel-img {
+  width: 100%;
+  height: 100%;
+  object-fit: contain;
+  border-radius: 50%;
+  filter: drop-shadow(0 0 50px rgba(200, 148, 45, 0.45));
 }
 .orbit-dot {
   position: absolute;
@@ -182,12 +187,98 @@
 .cta-banner h2 { font-size: clamp(1.7rem, 4vw, 2.6rem); margin-bottom: 14px; }
 .cta-banner .btn { background: #fff; color: #8c2f39; }
 
+/* ===== 봉축법어 모달 ===== */
+.dharma-modal {
+  position: fixed;
+  inset: 0;
+  z-index: 200;
+  display: none;
+  align-items: center;
+  justify-content: center;
+  padding: 20px;
+}
+.dharma-modal.open { display: flex; }
+.dharma-overlay {
+  position: absolute;
+  inset: 0;
+  background: rgba(58, 47, 40, 0.55);
+  backdrop-filter: blur(6px);
+}
+.dharma-dialog {
+  position: relative;
+  width: 100%;
+  max-width: 640px;
+  max-height: 86vh;
+  background: var(--surface);
+  border: 1px solid rgba(200, 148, 45, 0.35);
+  border-radius: 22px;
+  box-shadow: 0 30px 80px rgba(0,0,0,0.35);
+  overflow: hidden;
+  animation: dharmaPop 0.28s ease;
+}
+@keyframes dharmaPop {
+  from { opacity: 0; transform: translateY(16px) scale(0.98); }
+  to { opacity: 1; transform: translateY(0) scale(1); }
+}
+.dharma-close {
+  position: absolute;
+  top: 14px;
+  right: 16px;
+  width: 38px;
+  height: 38px;
+  border: none;
+  border-radius: 50%;
+  background: var(--surface-2);
+  color: var(--ink);
+  font-size: 1.1rem;
+  cursor: pointer;
+  z-index: 2;
+  display: grid;
+  place-items: center;
+  transition: background 0.2s;
+}
+.dharma-close:hover { background: rgba(140,47,57,0.1); }
+.dharma-scroll {
+  padding: 40px 42px 36px;
+  overflow-y: auto;
+  max-height: 86vh;
+}
+.dharma-body h3 {
+  margin: 28px 0 10px;
+  font-size: 1.15rem;
+  color: #8c2f39;
+}
+.dharma-body p {
+  margin: 10px 0;
+  line-height: 1.85;
+  color: #4a3d33;
+}
+.dharma-quote {
+  margin: 24px 0;
+  padding: 18px 22px;
+  border-left: 4px solid var(--gold);
+  background: var(--surface-2);
+  border-radius: 0 12px 12px 0;
+  font-size: 1.15rem;
+  font-weight: 700;
+  color: #8c2f39;
+}
+.dharma-sign {
+  margin-top: 28px;
+  text-align: right;
+  color: var(--muted);
+  line-height: 1.7;
+}
+.dharma-sign strong { color: #8c2f39; }
+
 @media (max-width: 860px) {
   .hero-inner { grid-template-columns: 1fr; }
   .hero-visual { order: -1; }
   .orbit { width: 240px; height: 240px; }
   .orbit-ring.r2 { inset: 26px; }
   .orbit-ring.r3 { inset: 54px; }
+  .orbit-core { width: 150px; height: 150px; }
   .tl-item { grid-template-columns: 64px 1fr; }
   .tl-item::before { left: 26px; }
+  .dharma-scroll { padding: 32px 24px 28px; }
 }

@@ -42,4 +42,29 @@ document.addEventListener("DOMContentLoaded", () => {
       }
     });
   });
+
+  // 봉축법어 모달
+  const modal = document.getElementById("dharmaModal");
+  const openBtn = document.getElementById("dharmaOpen");
+  if (modal && openBtn) {
+    const openModal = () => {
+      modal.classList.add("open");
+      modal.setAttribute("aria-hidden", "false");
+      document.body.style.overflow = "hidden";
+    };
+    const closeModal = () => {
+      modal.classList.remove("open");
+      modal.setAttribute("aria-hidden", "true");
+      document.body.style.overflow = "";
+    };
+    openBtn.addEventListener("click", openModal);
+    modal.querySelectorAll("[data-close]").forEach((el) => {
+      el.addEventListener("click", closeModal);
+    });
+    document.addEventListener("keydown", (e) => {
+      if (e.key === "Escape" && modal.classList.contains("open")) {
+        closeModal();
+      }
+    });
+  }
 });
