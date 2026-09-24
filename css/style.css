@@ -368,6 +368,22 @@ h2.heading {
   margin-bottom: 8px;
 }
 .footer a:hover { color: var(--ink); }
+.footer .sns-link {
+  display: inline-block;
+  margin-top: 4px;
+  padding: 7px 14px;
+  border: 1px solid rgba(200, 148, 45, 0.4);
+  border-radius: 999px;
+  color: #8c2f39;
+  font-weight: 600;
+  font-size: 0.85rem;
+  transition: all 0.2s;
+}
+.footer .sns-link:hover {
+  background: var(--grad-gold);
+  color: var(--ink);
+  border-color: transparent;
+}
 .footer-bottom {
   max-width: 1180px;
   margin: 40px auto 0;
