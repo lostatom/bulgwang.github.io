@@ -82,12 +82,14 @@
 .acct {
   display: inline-flex;
   align-items: center;
-  gap: 14px;
+  gap: 12px;
+  flex-wrap: nowrap;
+  white-space: nowrap;
   background: var(--surface-2);
   border: 1px dashed rgba(200,148,45,0.5);
   border-radius: 14px;
-  padding: 14px 24px;
-  font-size: 1.15rem;
+  padding: 14px 22px;
+  font-size: 1.1rem;
   font-weight: 700;
   letter-spacing: 0.03em;
   margin: 18px 0;
