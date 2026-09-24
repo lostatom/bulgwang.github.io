@@ -327,9 +327,18 @@
   text-decoration: underline;
 }
 .profile-card-more {
-  margin-top: 14px;
+  margin: 16px 0;
   display: inline-block;
   width: auto;
+  background: #ffffff;
+  border: 1px solid var(--border);
+  color: var(--ink);
+  box-shadow: 0 4px 14px rgba(58, 47, 40, 0.08);
+  padding: 10px 20px;
+}
+.profile-card-more:hover {
+  background: #fdfaf3;
+  box-shadow: 0 8px 20px rgba(58, 47, 40, 0.12);
 }
 .profile-card-quote {
   margin: 0;
