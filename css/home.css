@@ -253,14 +253,6 @@
   position: relative;
   z-index: 1;
 }
-.cta-banner::after {
-  content: "🙏";
-  position: absolute;
-  right: 30px;
-  bottom: -20px;
-  font-size: 8rem;
-  opacity: 0.18;
-}
 .cta-banner h2 { font-size: clamp(1.7rem, 4vw, 2.6rem); margin-bottom: 14px; }
 .cta-banner .btn { background: #fff; color: #8c2f39; }
 
