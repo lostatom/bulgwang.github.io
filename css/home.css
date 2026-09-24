@@ -57,6 +57,9 @@
   max-width: 100%;
   display: grid;
   place-items: center;
+  transform-style: preserve-3d;
+  will-change: transform;
+  transition: transform 0.5s cubic-bezier(0.22, 1, 0.36, 1);
 }
 .orbit-ring {
   position: absolute;
@@ -64,20 +67,28 @@
   border-radius: 50%;
   border: 1px solid rgba(200, 148, 45, 0.28);
   animation: spin 30s linear infinite;
+  --z: -30px;
+  transform: translateZ(var(--z));
+  will-change: transform;
 }
 .orbit-ring.r2 {
   inset: 34px;
   border-color: rgba(140, 47, 57, 0.28);
   animation-direction: reverse;
   animation-duration: 22s;
+  --z: -20px;
+  transform: translateZ(var(--z));
 }
 .orbit-ring.r3 {
   inset: 70px;
   border-color: rgba(201, 106, 106, 0.24);
   animation-duration: 16s;
+  --z: -10px;
+  transform: translateZ(var(--z));
 }
 @keyframes spin {
-  to { transform: rotate(360deg); }
+  from { transform: rotate(0deg) translateZ(var(--z, 0px)); }
+  to { transform: rotate(360deg) translateZ(var(--z, 0px)); }
 }
 .orbit-core {
   position: relative;
@@ -89,6 +100,7 @@
   transform-style: preserve-3d;
   will-change: transform;
   transition: transform 0.5s cubic-bezier(0.22, 1, 0.36, 1);
+  transform: translateZ(40px);
 }
 .dharma-wheel-img {
   width: 100%;
@@ -105,6 +117,8 @@
   border-radius: 50%;
   background: var(--gold);
   box-shadow: 0 0 16px rgba(200, 148, 45, 0.8);
+  transform: translateZ(10px);
+  will-change: transform;
 }
 
 /* 개념 카드 */

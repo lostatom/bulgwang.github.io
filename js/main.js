@@ -87,9 +87,9 @@ document.addEventListener("DOMContentLoaded", () => {
 
   // 법륜 3D 틸트 연출 (마우스 커서를 따라 부드럽게)
   const tiltZone = document.querySelector(".hero-visual");
-  const tiltCore = document.querySelector(".orbit-core");
-  if (tiltZone && tiltCore && window.matchMedia("(pointer: fine)").matches) {
-    const maxTilt = 12; // 최대 기울기(도)
+  const tiltOrbit = document.querySelector(".orbit");
+  if (tiltZone && tiltOrbit && window.matchMedia("(pointer: fine)").matches) {
+    const maxTilt = 14; // 최대 기울기(도)
     let targetRX = 0, targetRY = 0;
     let curRX = 0, curRY = 0;
     let raf = null;
@@ -114,8 +114,9 @@ document.addEventListener("DOMContentLoaded", () => {
     const animate = () => {
       curRX += (targetRX - curRX) * 0.1;
       curRY += (targetRY - curRY) * 0.1;
-      tiltCore.style.transform =
-        "perspective(900px) rotateX(" + curRX.toFixed(2) + "deg) rotateY(" + curRY.toFixed(2) + "deg)";
+      // orbit 전체(링·점·법륜)를 회전시켜 각 요소의 translateZ 깊이에 따라 패럴랙스 발생
+      tiltOrbit.style.transform =
+        "perspective(1000px) rotateX(" + curRX.toFixed(2) + "deg) rotateY(" + curRY.toFixed(2) + "deg)";
 
       // 목표에 거의 다다르면 루프 정지 (성능 절약)
       const done =
