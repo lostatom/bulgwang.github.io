@@ -120,6 +120,26 @@
 }
 .card p { color: var(--muted); font-size: 0.95rem; }
 
+/* 밥할머니 스토리 섹션 배경 */
+.section-babhalmeoni {
+  position: relative;
+  background: var(--bg-2);
+  overflow: hidden;
+  isolation: isolate;
+}
+.section-babhalmeoni::before {
+  content: "";
+  position: absolute;
+  inset: 0;
+  background-image: url("../images/nojeokbong-bg.jpg");
+  background-size: cover;
+  background-position: center;
+  background-repeat: no-repeat;
+  opacity: 0.16;
+  z-index: -1;
+  pointer-events: none;
+}
+
 /* 밥할머니 스토리 타임라인 */
 .timeline {
   display: flex;
