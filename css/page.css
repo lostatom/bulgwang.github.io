@@ -129,3 +129,33 @@
 @media (max-width: 720px) {
   .info-grid { grid-template-columns: 1fr; }
 }
+
+/* ============ 이미지 ============ */
+.img-frame {
+  border-radius: 22px;
+  overflow: hidden;
+  border: 1px solid var(--border);
+  background: var(--surface);
+  box-shadow: var(--shadow-soft);
+}
+.img-frame img {
+  width: 100%;
+  height: auto;
+  object-fit: cover;
+}
+.img-caption {
+  padding: 12px 16px;
+  font-size: 0.82rem;
+  color: var(--muted);
+  text-align: center;
+}
+.figure-row {
+  display: grid;
+  grid-template-columns: 0.9fr 1.1fr;
+  gap: 32px;
+  align-items: center;
+  margin: 28px 0;
+}
+@media (max-width: 720px) {
+  .figure-row { grid-template-columns: 1fr; }
+}
