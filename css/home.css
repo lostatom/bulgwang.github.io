@@ -62,18 +62,18 @@
   position: absolute;
   inset: 0;
   border-radius: 50%;
-  border: 1px solid rgba(242, 193, 78, 0.18);
+  border: 1px solid rgba(200, 148, 45, 0.28);
   animation: spin 30s linear infinite;
 }
 .orbit-ring.r2 {
   inset: 34px;
-  border-color: rgba(199, 125, 255, 0.22);
+  border-color: rgba(140, 47, 57, 0.28);
   animation-direction: reverse;
   animation-duration: 22s;
 }
 .orbit-ring.r3 {
   inset: 70px;
-  border-color: rgba(255, 107, 157, 0.18);
+  border-color: rgba(201, 106, 106, 0.24);
   animation-duration: 16s;
 }
 @keyframes spin {
@@ -88,7 +88,7 @@
   display: grid;
   place-items: center;
   font-size: 3rem;
-  box-shadow: 0 0 80px rgba(142, 92, 246, 0.6);
+  box-shadow: 0 0 80px rgba(200, 148, 45, 0.5);
 }
 .orbit-dot {
   position: absolute;
@@ -96,7 +96,7 @@
   height: 12px;
   border-radius: 50%;
   background: var(--gold);
-  box-shadow: 0 0 16px rgba(242, 193, 78, 0.9);
+  box-shadow: 0 0 16px rgba(200, 148, 45, 0.8);
 }
 
 /* 개념 카드 */
@@ -180,7 +180,7 @@
   opacity: 0.18;
 }
 .cta-banner h2 { font-size: clamp(1.7rem, 4vw, 2.6rem); margin-bottom: 14px; }
-.cta-banner .btn { background: #fff; color: #5b2c9e; }
+.cta-banner .btn { background: #fff; color: #8c2f39; }
 
 @media (max-width: 860px) {
   .hero-inner { grid-template-columns: 1fr; }
