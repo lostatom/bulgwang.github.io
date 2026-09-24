@@ -379,6 +379,17 @@ h2.heading {
   font-size: 0.85rem;
   transition: all 0.2s;
 }
+.sns-icon {
+  width: 16px;
+  height: 16px;
+  vertical-align: -3px;
+  margin-right: 5px;
+  border-radius: 4px;
+}
+.btn .sns-icon {
+  vertical-align: -2px;
+  border-radius: 3px;
+}
 .footer .sns-link:hover {
   background: var(--grad-gold);
   color: var(--ink);
