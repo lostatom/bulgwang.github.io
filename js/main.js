@@ -43,28 +43,45 @@ document.addEventListener("DOMContentLoaded", () => {
     });
   });
 
-  // 봉축법어 모달
-  const modal = document.getElementById("dharmaModal");
-  const openBtn = document.getElementById("dharmaOpen");
-  if (modal && openBtn) {
-    const openModal = () => {
-      modal.classList.add("open");
-      modal.setAttribute("aria-hidden", "false");
-      document.body.style.overflow = "hidden";
-    };
-    const closeModal = () => {
-      modal.classList.remove("open");
-      modal.setAttribute("aria-hidden", "true");
-      document.body.style.overflow = "";
-    };
-    openBtn.addEventListener("click", openModal);
-    modal.querySelectorAll("[data-close]").forEach((el) => {
-      el.addEventListener("click", closeModal);
+  // 모달 (일반화: data-modal-open 속성으로 여러 모달 공통 처리)
+  const openModal = (m) => {
+    m.classList.add("open");
+    m.setAttribute("aria-hidden", "false");
+    document.body.style.overflow = "hidden";
+  };
+  const closeModal = (m) => {
+    m.classList.remove("open");
+    m.setAttribute("aria-hidden", "true");
+    document.body.style.overflow = "";
+  };
+
+  // data-modal-open 버튼 -> 해당 id 모달 열기 (밥할머니 페이지의 두 글, 봉축법어 등)
+  document.querySelectorAll("[data-modal-open]").forEach((btn) => {
+    btn.addEventListener("click", () => {
+      const id = btn.getAttribute("data-modal-open");
+      const modal = document.getElementById(id);
+      if (modal) openModal(modal);
     });
-    document.addEventListener("keydown", (e) => {
-      if (e.key === "Escape" && modal.classList.contains("open")) {
-        closeModal();
-      }
-    });
+  });
+
+  // 기존 봉축법어 전용 버튼(id=dhamraOpen -> dharmaModal)
+  const dharmaModal = document.getElementById("dharmaModal");
+  const dharmaOpen = document.getElementById("dharmaOpen");
+  if (dharmaModal && dharmaOpen) {
+    dharmaOpen.addEventListener("click", () => openModal(dharmaModal));
   }
+
+  // 모든 모달에 닫기 핸들러 부착
+  document.querySelectorAll(".dharma-modal").forEach((modal) => {
+    modal.querySelectorAll("[data-close]").forEach((el) => {
+      el.addEventListener("click", () => closeModal(modal));
+    });
+  });
+
+  // ESC 닫기
+  document.addEventListener("keydown", (e) => {
+    if (e.key === "Escape") {
+      document.querySelectorAll(".dharma-modal.open").forEach((m) => closeModal(m));
+    }
+  });
 });

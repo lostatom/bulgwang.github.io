@@ -102,6 +102,20 @@
   -webkit-text-fill-color: transparent;
 }
 
+/* 아티클 카드 (모달 진입용 요약 카드) */
+.article-card {
+  background: var(--surface);
+  border: 1px solid rgba(200, 148, 45, 0.18);
+  border-radius: 22px;
+  padding: 48px 40px;
+  box-shadow: 0 18px 50px rgba(140, 47, 57, 0.06);
+  text-align: center;
+}
+.section[style*="bg-2"] .article-card,
+.section-babhalmeoni .article-card {
+  background: #fff;
+}
+
 /* 준비중 페이지 */
 .coming-soon {
   text-align: center;
