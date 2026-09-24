@@ -82,7 +82,7 @@
 .orbit-core {
   position: relative;
   width: 380px;
-  height: 207px;
+  height: 380px;
   background: transparent;
   display: grid;
   place-items: center;
@@ -90,8 +90,8 @@
 .dharma-wheel-img {
   width: 100%;
   height: 100%;
-  object-fit: cover;
-  filter: drop-shadow(0 0 40px rgba(200, 148, 45, 0.4));
+  object-fit: contain;
+  filter: drop-shadow(0 0 40px rgba(200, 148, 45, 0.35));
 }
 .orbit-dot {
   position: absolute;
@@ -295,7 +295,7 @@
   .orbit { width: 240px; height: 240px; }
   .orbit-ring.r2 { inset: 26px; }
   .orbit-ring.r3 { inset: 54px; }
-  .orbit-core { width: 240px; height: 132px; }
+  .orbit-core { width: 230px; height: 230px; }
   .tl-item { grid-template-columns: 64px 1fr; }
   .tl-item::before { left: 26px; }
   .dharma-scroll { padding: 32px 24px 28px; }
