@@ -302,6 +302,19 @@
   font-size: 1.0rem;
   line-height: 1.7;
 }
+.profile-card-book {
+  margin: 0 0 16px;
+  font-size: 0.98rem;
+  color: var(--ink);
+}
+.profile-card-book a {
+  color: var(--gold);
+  font-weight: 700;
+  text-decoration: none;
+}
+.profile-card-book a:hover {
+  text-decoration: underline;
+}
 .profile-card-quote {
   margin: 0;
   padding: 12px 16px;
