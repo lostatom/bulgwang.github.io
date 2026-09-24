@@ -326,6 +326,11 @@
 .profile-card-book a:hover {
   text-decoration: underline;
 }
+.profile-card-more {
+  margin-top: 14px;
+  display: inline-block;
+  width: auto;
+}
 .profile-card-quote {
   margin: 0;
   padding: 12px 16px;
