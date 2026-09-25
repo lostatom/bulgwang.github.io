@@ -227,19 +227,23 @@ document.addEventListener("DOMContentLoaded", () => {
     }
   }
 
-  // '밥할머니 이야기' 버튼 hover → 밥할머니 원형 일러스트를 법륜 위로 페이드 + 오른쪽→왼쪽 틸트
+  // '밥할머니 이야기' 버튼 hover → 밥할머니 원형 일러스트를 법륜 위로 페이드 + 배경과 함께 오른쪽→왼쪽 틸트
   const babBtn = document.querySelector('.hero-actions a[href="babhalmeoni.html"]');
   const babOverlay = document.querySelector(".babhalmeoni-overlay");
   const wheelImg = document.querySelector(".dharma-wheel-img");
+  const babOrbit = document.querySelector(".orbit");
   if (babBtn && babOverlay) {
     let babRaf = null;
     let phase = 0;
 
     const swing = () => {
+      // orbit 전체(법륜 배경·링·점 + 밥할머니)를 함께 회전시켜 일체감 유지
       const deg = Math.sin(phase) * 30; // 오른쪽(+) → 왼쪽(-) 왕복
       phase += 0.02;
-      babOverlay.style.transform =
-        "translate(-50%, -50%) translateZ(80px) rotateY(" + deg.toFixed(2) + "deg)";
+      if (babOrbit) {
+        babOrbit.style.transform =
+          "perspective(1000px) rotateX(0deg) rotateY(" + deg.toFixed(2) + "deg)";
+      }
       babRaf = requestAnimationFrame(swing);
     };
 
@@ -253,12 +257,15 @@ document.addEventListener("DOMContentLoaded", () => {
     });
 
     babBtn.addEventListener("mouseleave", () => {
-      // 마우스를 떼면 법륜 다시 표시
+      // 마우스를 떼면 법륜 다시 표시 + orbit 원위치
       if (wheelImg) wheelImg.classList.remove("hidden");
       babOverlay.classList.remove("visible");
       if (babRaf) cancelAnimationFrame(babRaf);
       babRaf = null;
-      babOverlay.style.transform = "translate(-50%, -50%) translateZ(80px) rotateY(0deg)";
+      if (babOrbit) {
+        babOrbit.style.transform =
+          "perspective(1000px) rotateX(0deg) rotateY(0deg)";
+      }
     });
   }
 
