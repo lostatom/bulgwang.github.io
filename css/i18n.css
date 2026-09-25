@@ -1,0 +1,36 @@
+/* 언어 토글 버튼 */
+.lang-toggle {
+  display: inline-flex;
+  align-items: center;
+  gap: 4px;
+  background: rgba(255, 255, 255, 0.08);
+  border: 1px solid var(--border);
+  border-radius: 999px;
+  padding: 4px;
+  cursor: pointer;
+  font-size: 0.8rem;
+  font-weight: 700;
+  color: var(--ink);
+  margin-left: 12px;
+  flex-shrink: 0;
+}
+.lang-toggle button {
+  border: none;
+  background: transparent;
+  color: inherit;
+  padding: 4px 10px;
+  border-radius: 999px;
+  cursor: pointer;
+  font-size: 0.8rem;
+  font-weight: 700;
+  font-family: var(--font-sans);
+  transition: background 0.2s, color 0.2s;
+}
+.lang-toggle button.active {
+  background: var(--grad-gold);
+  color: #3a2f28;
+}
+/* 영문 모드에서 특정 요소 숨김(예: 한자 병기) */
+html[lang="en"] .ko-only {
+  display: none !important;
+}
