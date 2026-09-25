@@ -406,3 +406,12 @@
   .tl-item::before { left: 26px; }
   .dharma-scroll { padding: 32px 24px 28px; }
 }
+
+/* 제목 내 '밥할머니' 인라인 로고 */
+.bh-inline-logo {
+  height: 0.72em;
+  width: auto;
+  display: inline-block;
+  vertical-align: -0.06em;
+  margin-right: 0.06em;
+}
