@@ -11,9 +11,9 @@
     wrap.innerHTML =
       '<button data-lang="ko">한국어</button>' +
       '<button data-lang="en">EN</button>';
-    const footerBottom = document.querySelector(".footer-bottom");
-    if (footerBottom) {
-      footerBottom.appendChild(wrap);
+    const footerBrand = document.querySelector(".footer-inner > div:first-child");
+    if (footerBrand) {
+      footerBrand.appendChild(wrap);
     } else {
       document.body.appendChild(wrap);
     }

@@ -16,7 +16,7 @@
   font-size: 0.8rem;
   font-weight: 700;
   color: var(--ink);
-  margin: 16px auto 0;
+  margin: 16px 0 0;
   flex-shrink: 0;
 }
 .lang-toggle button {
