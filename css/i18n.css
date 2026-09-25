@@ -59,7 +59,7 @@ html[lang="en"] h5,
 html[lang="en"] h6 {
   font-family: var(--font-display);
   font-weight: 600;
-  letter-spacing: -0.5px;
+  letter-spacing: -2px;
 }
 
 /* 강조 태그도 과도한 굵기 방지 */
