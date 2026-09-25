@@ -227,6 +227,36 @@ document.addEventListener("DOMContentLoaded", () => {
     }
   }
 
+  // '밥할머니 이야기' 버튼 hover → 밥할머니 원형 일러스트를 법륜 위로 페이드 + 오른쪽→왼쪽 틸트
+  const babBtn = document.querySelector('.hero-actions a[href="babhalmeoni.html"]');
+  const babOverlay = document.querySelector(".babhalmeoni-overlay");
+  if (babBtn && babOverlay) {
+    let babRaf = null;
+    let phase = 0;
+
+    const swing = () => {
+      const deg = Math.sin(phase) * 30; // 오른쪽(+) → 왼쪽(-) 왕복
+      phase += 0.02;
+      babOverlay.style.transform =
+        "translate(-50%, -50%) translateZ(80px) rotateY(" + deg.toFixed(2) + "deg)";
+      babRaf = requestAnimationFrame(swing);
+    };
+
+    babBtn.addEventListener("mouseenter", () => {
+      babOverlay.classList.add("visible");
+      phase = Math.PI / 2; // 오른쪽(양수)에서 시작
+      if (babRaf) cancelAnimationFrame(babRaf);
+      babRaf = requestAnimationFrame(swing);
+    });
+
+    babBtn.addEventListener("mouseleave", () => {
+      babOverlay.classList.remove("visible");
+      if (babRaf) cancelAnimationFrame(babRaf);
+      babRaf = null;
+      babOverlay.style.transform = "translate(-50%, -50%) translateZ(80px) rotateY(0deg)";
+    });
+  }
+
   // 암베드카르 박사 사진 카드 3D 틸트 (마우스 커서를 따라 살짝)
   const profileImg = document.querySelector(".profile-card-img");
   if (profileImg && window.matchMedia("(pointer: fine)").matches) {
