@@ -296,6 +296,22 @@ document.addEventListener("DOMContentLoaded", () => {
       // 마우스 기기에서만 적용 (터치는 자이로/기본 동작)
       if (!window.matchMedia("(pointer: fine)").matches) return;
 
+      // 카드 안의 이미지에 z축 깊이를 주어 틸트 시 입체감(패럴랙스)이 나도록
+      const imgs = card.querySelectorAll("img");
+      if (imgs.length) {
+        card.classList.add("has-tilt-img");
+        imgs.forEach((img) => {
+          img.style.transform = "translateZ(34px)";
+          img.style.willChange = "transform";
+          // 이미지의 부모 체인에 preserve-3d 전파 (translateZ가 동작하게)
+          let p = img.parentElement;
+          while (p && p !== card) {
+            p.style.transformStyle = "preserve-3d";
+            p = p.parentElement;
+          }
+        });
+      }
+
       let raf = null;
       let targetRX = 0, targetRY = 0;
       let curRX = 0, curRY = 0;
