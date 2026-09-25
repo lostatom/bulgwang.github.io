@@ -375,27 +375,6 @@
   line-height: 1.7;
 }
 
-/* 카드 직접 자식 제목 (예: '암베드카르 박사의 삶') */
-.profile-card > h3 {
-  margin: 0 0 4px;
-  font-size: 1.35rem;
-  font-weight: 800;
-  color: var(--ink);
-  letter-spacing: -0.01em;
-}
-.profile-card .card h4 {
-  margin: 0 0 10px;
-  font-size: 1.08rem;
-  font-weight: 700;
-  color: var(--ink);
-}
-.profile-card .card p {
-  margin: 0;
-  color: var(--muted);
-  font-size: 0.93rem;
-  line-height: 1.65;
-}
-
 @media (max-width: 640px) {
   .profile-card {
     flex-direction: column;
