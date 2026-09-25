@@ -277,9 +277,9 @@
   perspective: 1000px;
 }
 .profile-card-img {
-  flex: 0 0 260px;
-  width: 260px;
-  height: 370px;
+  flex: 0 0 340px;
+  width: 340px;
+  height: 484px;
   border-radius: 18px;
   overflow: hidden;
   border: 1px solid var(--border);
@@ -386,8 +386,8 @@
   }
   .profile-card-img {
     flex: none;
-    width: 200px;
-    height: 285px;
+    width: 260px;
+    height: 370px;
   }
   .profile-card-body .eyebrow { justify-content: center; }
   .profile-card-quote { text-align: left; }
