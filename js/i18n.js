@@ -2,8 +2,6 @@
 (function () {
   // 언어 토글 버튼 자동 생성
   function createToggle() {
-    const nav = document.querySelector(".nav-inner");
-    if (!nav) return;
     if (document.querySelector(".lang-toggle")) return; // 이미 있으면 스킵
 
     const saved = localStorage.getItem("bulgwang-lang") || "ko";
@@ -13,7 +11,7 @@
     wrap.innerHTML =
       '<button data-lang="ko">한국어</button>' +
       '<button data-lang="en">EN</button>';
-    nav.appendChild(wrap);
+    document.body.appendChild(wrap);
 
     wrap.querySelectorAll("button").forEach((btn) => {
       btn.classList.toggle("active", btn.dataset.lang === saved);
