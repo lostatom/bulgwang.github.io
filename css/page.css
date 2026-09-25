@@ -132,6 +132,7 @@
   padding: 48px 40px;
   box-shadow: 0 18px 50px rgba(140, 47, 57, 0.06);
   text-align: center;
+  transform-style: preserve-3d;
 }
 .section[style*="bg-2"] .article-card,
 .section-babhalmeoni .article-card {
@@ -269,6 +270,7 @@
   border-radius: 22px;
   padding: 36px;
   box-shadow: 0 18px 50px rgba(140, 47, 57, 0.06);
+  transform-style: preserve-3d;
 }
 .profile-card-top {
   display: flex;

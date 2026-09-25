@@ -283,4 +283,65 @@ document.addEventListener("DOMContentLoaded", () => {
 
     profileImg.addEventListener("mouseleave", () => setTarget(0, 0));
   }
+
+  // 모든 카드 3D 틸트 (내부에 다른 카드가 없는 '리프 카드'에만 적용)
+  function initLeafCardTilt() {
+    const cardSel = [".card", ".profile-card", ".tl-body", ".article-card"].join(",");
+    const cards = document.querySelectorAll(cardSel);
+    const maxTilt = 8; // 최대 기울기(도)
+
+    cards.forEach((card) => {
+      // 내부(자손)에 다른 카드가 있으면 스킵 — 최상위/독립 카드만
+      if (card.querySelector(cardSel)) return;
+      // 마우스 기기에서만 적용 (터치는 자이로/기본 동작)
+      if (!window.matchMedia("(pointer: fine)").matches) return;
+
+      let raf = null;
+      let targetRX = 0, targetRY = 0;
+      let curRX = 0, curRY = 0;
+      let hovering = false;
+
+      const animate = () => {
+        curRX += (targetRX - curRX) * 0.12;
+        curRY += (targetRY - curRY) * 0.12;
+        const lift = hovering ? " translateY(-4px)" : "";
+        card.style.transform =
+          "perspective(900px) rotateX(" + curRX.toFixed(2) + "deg) rotateY(" +
+          curRY.toFixed(2) + "deg)" + lift;
+        const done =
+          Math.abs(targetRX - curRX) < 0.05 && Math.abs(targetRY - curRY) < 0.05;
+        if (done) {
+          raf = null;
+        } else {
+          raf = requestAnimationFrame(animate);
+        }
+      };
+
+      const setTarget = (rx, ry) => {
+        targetRX = rx;
+        targetRY = ry;
+        if (!raf) raf = requestAnimationFrame(animate);
+      };
+
+      card.addEventListener("mouseenter", () => {
+        hovering = true;
+        // will-change로 부드러운 3D 준비
+        card.style.willChange = "transform";
+      });
+
+      card.addEventListener("mousemove", (e) => {
+        const r = card.getBoundingClientRect();
+        const nx = (e.clientX - r.left) / r.width - 0.5; // -0.5 ~ 0.5
+        const ny = (e.clientY - r.top) / r.height - 0.5;
+        setTarget(-ny * maxTilt * 2, nx * maxTilt * 2);
+      });
+
+      card.addEventListener("mouseleave", () => {
+        hovering = false;
+        setTarget(0, 0);
+        // 원위치 안정 후 will-change 해제
+      });
+    });
+  }
+  initLeafCardTilt();
 });

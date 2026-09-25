@@ -326,10 +326,10 @@ h2.heading {
   border: 1px solid var(--border);
   border-radius: var(--radius);
   padding: 28px;
-  transition: transform 0.25s ease, border-color 0.25s ease, box-shadow 0.25s ease;
+  transition: border-color 0.25s ease, box-shadow 0.25s ease;
+  transform-style: preserve-3d;
 }
 .card:hover {
-  transform: translateY(-4px);
   border-color: rgba(140, 47, 57, 0.2);
   box-shadow: var(--shadow-soft);
 }

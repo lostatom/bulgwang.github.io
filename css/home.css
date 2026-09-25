@@ -286,6 +286,7 @@
   border: 1px solid var(--border);
   border-radius: var(--radius);
   padding: 20px 24px;
+  transform-style: preserve-3d;
 }
 .tl-body h4 { margin-bottom: 6px; font-size: 1.05rem; }
 .tl-body p { color: var(--muted); font-size: 0.92rem; }
