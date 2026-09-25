@@ -153,8 +153,9 @@
 .dharma-wheel-img.hidden {
   opacity: 0;
 }
-/* 밥할머니 원형 일러스트 — 법륜 위에 겹쳐 hover 시 페이드 + 틸트 */
-.babhalmeoni-overlay {
+/* 밥할머니/암베드카르 원형 일러스트 — 법륜 위에 겹쳐 hover 시 페이드 + 틸트 */
+.babhalmeoni-overlay,
+.ambedkar-overlay {
   position: absolute;
   top: 50%;
   left: 50%;
@@ -170,7 +171,8 @@
   will-change: transform, opacity;
   border-radius: 50%;
 }
-.babhalmeoni-overlay.visible {
+.babhalmeoni-overlay.visible,
+.ambedkar-overlay.visible {
   opacity: 1;
 }
 /* 오른쪽에서 왼쪽으로 서서히 틸트(rotateY)하는 상태 */

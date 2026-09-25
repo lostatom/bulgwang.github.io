@@ -227,47 +227,54 @@ document.addEventListener("DOMContentLoaded", () => {
     }
   }
 
-  // '밥할머니 이야기' 버튼 hover → 밥할머니 원형 일러스트를 법륜 위로 페이드 + 배경과 함께 오른쪽→왼쪽 틸트
-  const babBtn = document.querySelector('.hero-actions a[href="babhalmeoni.html"]');
-  const babOverlay = document.querySelector(".babhalmeoni-overlay");
+  // '밥할머니 이야기'/'암베드카르 박사 이야기' 버튼 hover → 원형 일러스트를 법륜 위로 페이드 + 배경과 함께 오른쪽→왼쪽 틸트
   const wheelImg = document.querySelector(".dharma-wheel-img");
-  const babOrbit = document.querySelector(".orbit");
-  if (babBtn && babOverlay) {
-    let babRaf = null;
+  const heroOrbit = document.querySelector(".orbit");
+  const overlayMap = [
+    { btn: '.hero-actions a[href="babhalmeoni.html"]', overlay: ".babhalmeoni-overlay" },
+    { btn: '.hero-actions a[href="dharma.html"]', overlay: ".ambedkar-overlay" }
+  ];
+
+  overlayMap.forEach((item) => {
+    const btn = document.querySelector(item.btn);
+    const overlay = document.querySelector(item.overlay);
+    if (!btn || !overlay) return;
+
+    let raf = null;
     let phase = 0;
 
     const swing = () => {
-      // orbit 전체(법륜 배경·링·점 + 밥할머니)를 함께 회전시켜 일체감 유지
+      // orbit 전체(법륜 배경·링·점 + 원형 일러스트)를 함께 회전시켜 일체감 유지
       const deg = Math.sin(phase) * 30; // 오른쪽(+) → 왼쪽(-) 왕복
       phase += 0.02;
-      if (babOrbit) {
-        babOrbit.style.transform =
+      if (heroOrbit) {
+        heroOrbit.style.transform =
           "perspective(1000px) rotateX(0deg) rotateY(" + deg.toFixed(2) + "deg)";
       }
-      babRaf = requestAnimationFrame(swing);
+      raf = requestAnimationFrame(swing);
     };
 
-    babBtn.addEventListener("mouseenter", () => {
-      // 법륜 이미지를 잠시 숨기고 밥할머니만 표시
+    btn.addEventListener("mouseenter", () => {
+      // 법륜 이미지를 잠시 숨기고 원형 일러스트만 표시
       if (wheelImg) wheelImg.classList.add("hidden");
-      babOverlay.classList.add("visible");
+      overlay.classList.add("visible");
       phase = Math.PI / 2; // 오른쪽(양수)에서 시작
-      if (babRaf) cancelAnimationFrame(babRaf);
-      babRaf = requestAnimationFrame(swing);
+      if (raf) cancelAnimationFrame(raf);
+      raf = requestAnimationFrame(swing);
     });
 
-    babBtn.addEventListener("mouseleave", () => {
+    btn.addEventListener("mouseleave", () => {
       // 마우스를 떼면 법륜 다시 표시 + orbit 원위치
       if (wheelImg) wheelImg.classList.remove("hidden");
-      babOverlay.classList.remove("visible");
-      if (babRaf) cancelAnimationFrame(babRaf);
-      babRaf = null;
-      if (babOrbit) {
-        babOrbit.style.transform =
+      overlay.classList.remove("visible");
+      if (raf) cancelAnimationFrame(raf);
+      raf = null;
+      if (heroOrbit) {
+        heroOrbit.style.transform =
           "perspective(1000px) rotateX(0deg) rotateY(0deg)";
       }
     });
-  }
+  });
 
   // 암베드카르 박사 사진 카드 3D 틸트 (마우스 커서를 따라 살짝)
   const profileImg = document.querySelector(".profile-card-img");
