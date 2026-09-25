@@ -204,9 +204,9 @@ document.addEventListener("DOMContentLoaded", () => {
 
       const swing = () => {
         if (!hoverActive) return;
-        // sin 파형으로 rotateY를 오른쪽(+) → 왼쪽(-)으로 서서히 왕복
-        const ry = Math.sin(phase) * maxTilt * 1.6;
-        phase += 0.022; // 서서히
+        // sin 파형으로 rotateY를 반전 방향(왼쪽(-) → 오른쪽(+))으로 서서히 왕복
+        const ry = -Math.sin(phase) * maxTilt * 1.6;
+        phase += 0.0066; // 기존 0.022의 30% 수준으로 느리게
         setTarget(0, ry);
         swingRaf = requestAnimationFrame(swing);
       };
@@ -245,8 +245,8 @@ document.addEventListener("DOMContentLoaded", () => {
 
     const swing = () => {
       // orbit 전체(법륜 배경·링·점 + 원형 일러스트)를 함께 회전시켜 일체감 유지
-      const deg = Math.sin(phase) * 30; // 오른쪽(+) → 왼쪽(-) 왕복
-      phase += 0.02;
+      const deg = -Math.sin(phase) * 30; // 반전된 방향(왼쪽(-) → 오른쪽(+) 왕복)
+      phase += 0.006; // 기존 0.02의 30% 수준으로 느리게
       if (heroOrbit) {
         heroOrbit.style.transform =
           "perspective(1000px) rotateX(0deg) rotateY(" + deg.toFixed(2) + "deg)";
