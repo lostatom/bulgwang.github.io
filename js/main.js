@@ -196,85 +196,55 @@ document.addEventListener("DOMContentLoaded", () => {
       }
     }
 
-    // 3) '절 둘러보기' 버튼 hover → 법륜이 오른쪽→왼쪽으로 서서히 틸트
-    const tourBtn = document.querySelector('.hero-actions a[href="about.html"]');
-    if (tourBtn) {
+    // 3) 히어로 버튼(절 둘러보기·밥할머니·암베드카르) hover → 하나의 orbit 오브젝트로 통합 스윙
+    const wheelImg = document.querySelector(".dharma-wheel-img");
+    const heroButtons = [
+      { btn: '.hero-actions a[href="about.html"]', overlay: null },
+      { btn: '.hero-actions a[href="babhalmeoni.html"]', overlay: ".babhalmeoni-overlay" },
+      { btn: '.hero-actions a[href="dharma.html"]', overlay: ".ambedkar-overlay" }
+    ];
+
+    heroButtons.forEach((entry) => {
+      const btn = document.querySelector(entry.btn);
+      const overlay = entry.overlay ? document.querySelector(entry.overlay) : null;
+      if (!btn) return;
+
       let swingRaf = null;
-      let phase = 0; // 스윙 위상(시간)
+      let phase = 0;
 
       const swing = () => {
         if (!hoverActive) return;
-        // sin 파형으로 rotateY를 반전 방향(왼쪽(-) → 오른쪽(+))으로 서서히 왕복
+        // orbit를 하나의 오브젝트로: 반전 방향(왼쪽(-) → 오른쪽(+)) 부드러운 왕복
         const ry = -Math.sin(phase) * maxTilt * 1.6;
-        phase += 0.0066; // 기존 0.022의 30% 수준으로 느리게
+        phase += 0.0066; // 30% 속도
         setTarget(0, ry);
         swingRaf = requestAnimationFrame(swing);
       };
 
-      tourBtn.addEventListener("mouseenter", () => {
+      btn.addEventListener("mouseenter", () => {
         hoverActive = true;
         phase = 0;
+        if (overlay) {
+          // 법륜 이미지 숨기고 해당 원형 일러스트 표시
+          if (wheelImg) wheelImg.classList.add("hidden");
+          overlay.classList.add("visible");
+        }
         if (swingRaf) cancelAnimationFrame(swingRaf);
         swingRaf = requestAnimationFrame(swing);
       });
 
-      tourBtn.addEventListener("mouseleave", () => {
+      btn.addEventListener("mouseleave", () => {
         hoverActive = false;
+        if (overlay) {
+          if (wheelImg) wheelImg.classList.remove("hidden");
+          overlay.classList.remove("visible");
+        }
         if (swingRaf) cancelAnimationFrame(swingRaf);
         swingRaf = null;
         setTarget(0, 0);
       });
-    }
+    });
   }
-
-  // '밥할머니 이야기'/'암베드카르 박사 이야기' 버튼 hover → 원형 일러스트를 법륜 위로 페이드 + 배경과 함께 오른쪽→왼쪽 틸트
-  const wheelImg = document.querySelector(".dharma-wheel-img");
-  const heroOrbit = document.querySelector(".orbit");
-  const overlayMap = [
-    { btn: '.hero-actions a[href="babhalmeoni.html"]', overlay: ".babhalmeoni-overlay" },
-    { btn: '.hero-actions a[href="dharma.html"]', overlay: ".ambedkar-overlay" }
-  ];
-
-  overlayMap.forEach((item) => {
-    const btn = document.querySelector(item.btn);
-    const overlay = document.querySelector(item.overlay);
-    if (!btn || !overlay) return;
-
-    let raf = null;
-    let phase = 0;
-
-    const swing = () => {
-      // orbit 전체(법륜 배경·링·점 + 원형 일러스트)를 함께 회전시켜 일체감 유지
-      const deg = -Math.sin(phase) * 30; // 반전된 방향(왼쪽(-) → 오른쪽(+) 왕복)
-      phase += 0.006; // 기존 0.02의 30% 수준으로 느리게
-      if (heroOrbit) {
-        heroOrbit.style.transform =
-          "perspective(1000px) rotateX(0deg) rotateY(" + deg.toFixed(2) + "deg)";
-      }
-      raf = requestAnimationFrame(swing);
-    };
-
-    btn.addEventListener("mouseenter", () => {
-      // 법륜 이미지를 잠시 숨기고 원형 일러스트만 표시
-      if (wheelImg) wheelImg.classList.add("hidden");
-      overlay.classList.add("visible");
-      phase = Math.PI / 2; // 오른쪽(양수)에서 시작
-      if (raf) cancelAnimationFrame(raf);
-      raf = requestAnimationFrame(swing);
-    });
-
-    btn.addEventListener("mouseleave", () => {
-      // 마우스를 떼면 법륜 다시 표시 + orbit 원위치
-      if (wheelImg) wheelImg.classList.remove("hidden");
-      overlay.classList.remove("visible");
-      if (raf) cancelAnimationFrame(raf);
-      raf = null;
-      if (heroOrbit) {
-        heroOrbit.style.transform =
-          "perspective(1000px) rotateX(0deg) rotateY(0deg)";
-      }
-    });
-  });
 
   // 암베드카르 박사 사진 카드 3D 틸트 (마우스 커서를 따라 살짝)
   const profileImg = document.querySelector(".profile-card-img");
