@@ -193,4 +193,42 @@ document.addEventListener("DOMContentLoaded", () => {
       }
     }
   }
+
+  // 암베드카르 박사 사진 카드 3D 틸트 (마우스 커서를 따라 살짝)
+  const profileImg = document.querySelector(".profile-card-img");
+  if (profileImg && window.matchMedia("(pointer: fine)").matches) {
+    const maxTilt = 10; // 최대 기울기(도)
+    let raf = null;
+    let targetRX = 0, targetRY = 0;
+    let curRX = 0, curRY = 0;
+
+    const animate = () => {
+      curRX += (targetRX - curRX) * 0.12;
+      curRY += (targetRY - curRY) * 0.12;
+      profileImg.style.transform =
+        "rotateX(" + curRX.toFixed(2) + "deg) rotateY(" + curRY.toFixed(2) + "deg)";
+      const done =
+        Math.abs(targetRX - curRX) < 0.05 && Math.abs(targetRY - curRY) < 0.05;
+      if (done) {
+        raf = null;
+      } else {
+        raf = requestAnimationFrame(animate);
+      }
+    };
+
+    const setTarget = (rx, ry) => {
+      targetRX = rx;
+      targetRY = ry;
+      if (!raf) raf = requestAnimationFrame(animate);
+    };
+
+    profileImg.addEventListener("mousemove", (e) => {
+      const r = profileImg.getBoundingClientRect();
+      const nx = (e.clientX - r.left) / r.width - 0.5; // -0.5 ~ 0.5
+      const ny = (e.clientY - r.top) / r.height - 0.5;
+      setTarget(-ny * maxTilt * 2, nx * maxTilt * 2);
+    });
+
+    profileImg.addEventListener("mouseleave", () => setTarget(0, 0));
+  }
 });
