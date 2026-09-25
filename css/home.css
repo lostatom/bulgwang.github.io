@@ -147,6 +147,11 @@
   will-change: transform;
   object-fit: contain;
   filter: drop-shadow(0 0 45px rgba(200, 148, 45, 0.4));
+  transition: opacity 0.5s ease;
+}
+/* 밥할머니 오버레이 표시 중 법륜을 잠시 숨김 */
+.dharma-wheel-img.hidden {
+  opacity: 0;
 }
 /* 밥할머니 원형 일러스트 — 법륜 위에 겹쳐 hover 시 페이드 + 틸트 */
 .babhalmeoni-overlay {

@@ -230,6 +230,7 @@ document.addEventListener("DOMContentLoaded", () => {
   // '밥할머니 이야기' 버튼 hover → 밥할머니 원형 일러스트를 법륜 위로 페이드 + 오른쪽→왼쪽 틸트
   const babBtn = document.querySelector('.hero-actions a[href="babhalmeoni.html"]');
   const babOverlay = document.querySelector(".babhalmeoni-overlay");
+  const wheelImg = document.querySelector(".dharma-wheel-img");
   if (babBtn && babOverlay) {
     let babRaf = null;
     let phase = 0;
@@ -243,6 +244,8 @@ document.addEventListener("DOMContentLoaded", () => {
     };
 
     babBtn.addEventListener("mouseenter", () => {
+      // 법륜 이미지를 잠시 숨기고 밥할머니만 표시
+      if (wheelImg) wheelImg.classList.add("hidden");
       babOverlay.classList.add("visible");
       phase = Math.PI / 2; // 오른쪽(양수)에서 시작
       if (babRaf) cancelAnimationFrame(babRaf);
@@ -250,6 +253,8 @@ document.addEventListener("DOMContentLoaded", () => {
     });
 
     babBtn.addEventListener("mouseleave", () => {
+      // 마우스를 떼면 법륜 다시 표시
+      if (wheelImg) wheelImg.classList.remove("hidden");
       babOverlay.classList.remove("visible");
       if (babRaf) cancelAnimationFrame(babRaf);
       babRaf = null;
