@@ -415,3 +415,11 @@
   vertical-align: -0.06em;
   margin-right: 0.06em;
 }
+
+/* 섹션 제목 위에 배치하는 큰 밥할머니 로고 */
+.bh-section-logo {
+  display: block;
+  height: 56px;
+  width: auto;
+  margin: 0 0 18px;
+}
