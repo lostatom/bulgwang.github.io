@@ -1,13 +1,11 @@
-/* 언어 토글 버튼 (화면 하단 고정) */
+/* 언어 토글 버튼 (푸터 영역) */
 .lang-toggle {
-  position: fixed;
-  bottom: 20px;
-  right: 20px;
-  z-index: 9999;
-  display: inline-flex;
+  display: flex;
   align-items: center;
+  justify-content: center;
   gap: 4px;
-  background: rgba(255, 255, 255, 0.95);
+  width: fit-content;
+  background: rgba(255, 255, 255, 0.08);
   border: 1px solid var(--border);
   border-radius: 999px;
   padding: 4px;
@@ -15,8 +13,7 @@
   font-size: 0.8rem;
   font-weight: 700;
   color: var(--ink);
-  box-shadow: 0 4px 16px rgba(0, 0, 0, 0.12);
-  backdrop-filter: blur(8px);
+  margin: 16px auto 0;
   flex-shrink: 0;
 }
 .lang-toggle button {

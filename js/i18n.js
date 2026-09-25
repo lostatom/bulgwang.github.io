@@ -11,7 +11,12 @@
     wrap.innerHTML =
       '<button data-lang="ko">한국어</button>' +
       '<button data-lang="en">EN</button>';
-    document.body.appendChild(wrap);
+    const footerBottom = document.querySelector(".footer-bottom");
+    if (footerBottom) {
+      footerBottom.appendChild(wrap);
+    } else {
+      document.body.appendChild(wrap);
+    }
 
     wrap.querySelectorAll("button").forEach((btn) => {
       btn.classList.toggle("active", btn.dataset.lang === saved);
