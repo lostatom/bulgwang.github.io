@@ -481,6 +481,12 @@
   background: linear-gradient(160deg, #3a2f28 0%, #4a352c 55%, #5a3a2c 100%);
   color: #f6efe2;
 }
+
+/* 암베드카르 소개 섹션 (약간 짙은 아이보리 배경) */
+.section-ambedkar-intro {
+  background: var(--bg-2);
+}
+
 .section-navayana .heading {
   color: #f6efe2;
 }
