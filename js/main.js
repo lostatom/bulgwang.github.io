@@ -93,6 +93,7 @@ document.addEventListener("DOMContentLoaded", () => {
     let targetRX = 0, targetRY = 0;
     let curRX = 0, curRY = 0;
     let raf = null;
+    let hoverActive = false; // '절 둘러보기' 버튼 hover 여부
 
     const animate = () => {
       curRX += (targetRX - curRX) * 0.1;
@@ -120,6 +121,7 @@ document.addEventListener("DOMContentLoaded", () => {
     // 1) 마우스 기기(데스크톱): 마우스 커서를 따라 틸트
     if (window.matchMedia("(pointer: fine)").matches) {
       const onMove = (e) => {
+        if (hoverActive) return;
         const r = tiltZone.getBoundingClientRect();
         const cx = r.left + r.width / 2;
         const cy = r.top + r.height / 2;
@@ -139,6 +141,7 @@ document.addEventListener("DOMContentLoaded", () => {
 
       const onOrientation = (e) => {
         if (e.beta === null || e.gamma === null) return;
+        if (hoverActive) return;
         if (!gyroSupported) {
           // 첫 유효 값으로 기준점 설정 (현재 드는 각도를 중립으로)
           beta0 = e.beta;
@@ -191,6 +194,36 @@ document.addEventListener("DOMContentLoaded", () => {
         window.addEventListener("touchstart", onFirstTouch, { once: true });
         window.addEventListener("click", onFirstTouch, { once: true });
       }
+    }
+
+    // 3) '절 둘러보기' 버튼 hover → 법륜이 오른쪽→왼쪽으로 서서히 틸트
+    const tourBtn = document.querySelector('.hero-actions a[href="about.html"]');
+    if (tourBtn) {
+      let swingRaf = null;
+      let phase = 0; // 스윙 위상(시간)
+
+      const swing = () => {
+        if (!hoverActive) return;
+        // sin 파형으로 rotateY를 오른쪽(+) → 왼쪽(-)으로 서서히 왕복
+        const ry = Math.sin(phase) * maxTilt * 1.6;
+        phase += 0.022; // 서서히
+        setTarget(0, ry);
+        swingRaf = requestAnimationFrame(swing);
+      };
+
+      tourBtn.addEventListener("mouseenter", () => {
+        hoverActive = true;
+        phase = 0;
+        if (swingRaf) cancelAnimationFrame(swingRaf);
+        swingRaf = requestAnimationFrame(swing);
+      });
+
+      tourBtn.addEventListener("mouseleave", () => {
+        hoverActive = false;
+        if (swingRaf) cancelAnimationFrame(swingRaf);
+        swingRaf = null;
+        setTarget(0, 0);
+      });
     }
   }
 
