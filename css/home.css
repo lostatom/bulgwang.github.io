@@ -226,13 +226,18 @@
 }
 .card p { color: var(--muted); font-size: 0.95rem; }
 
-/* 사진 배경 카드 (젊은 불자들과의 소통) */
+/* 사진 배경 카드 (공통: 비넷 + 흰 텍스트) */
 .card-photo {
   position: relative;
   color: #fff;
-  background-image: url("../images/young-buddhists-bg.jpg");
   background-size: cover;
   background-position: center;
+}
+.card-photo-young {
+  background-image: url("../images/young-buddhists-bg.jpg");
+}
+.card-photo-influence {
+  background-image: url("../images/good-influence-bg.jpg");
 }
 .card-photo::before {
   content: "";
