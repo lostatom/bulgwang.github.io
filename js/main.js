@@ -361,16 +361,42 @@ document.addEventListener("DOMContentLoaded", () => {
   }
   initLeafCardTilt();
 
-  // 불광사 안내 팝업 (한국어 전용, 12초 표시)
+  // 불광사 안내 팝업 (한국어 전용, 12초 표시, 클라이언트당 1회만)
   const initBulgwangsaNotice = () => {
     const notice = document.getElementById("bulgwangsa-notice");
     if (!notice) return;
 
+    const STORAGE_KEY = "bulgwangsa_notice_seen";
+
+    // localStorage 접근 가능 여부 확인
+    const storageOk = (() => {
+      try {
+        const t = "__bns_test__";
+        localStorage.setItem(t, "1");
+        localStorage.removeItem(t);
+        return true;
+      } catch (e) {
+        return false;
+      }
+    })();
+
+    // 이미 본 적 있는지 확인
+    const hasSeen = storageOk && localStorage.getItem(STORAGE_KEY) === "1";
+
     let timer = null;
     const show = () => { notice.hidden = false; };
+
+    // 팝업을 본 것으로 기록하고 숨김
+    const markSeen = () => {
+      if (storageOk) {
+        try { localStorage.setItem(STORAGE_KEY, "1"); } catch (e) {}
+      }
+    };
+
     const hide = () => {
       if (timer) { clearTimeout(timer); timer = null; }
       notice.hidden = true;
+      markSeen(); // 닫기 시 클라이언트에 기록
     };
 
     const closeBtn = notice.querySelector(".bulgwangsa-notice-close");
@@ -385,10 +411,12 @@ document.addEventListener("DOMContentLoaded", () => {
       attributeFilter: ["lang"],
     });
 
-    // 한국어 모드에서만 12초간 표시
-    if (document.documentElement.lang !== "en") {
+    // 이미 본 적이 없고, 한국어 모드일 때만 12초간 표시
+    if (!hasSeen && document.documentElement.lang !== "en") {
       show();
-      timer = setTimeout(hide, 12000);
+      timer = setTimeout(() => {
+        hide(); // 타이머 종료 시에도 기록
+      }, 12000);
     }
   };
   initBulgwangsaNotice();
