@@ -16,7 +16,7 @@
   gap: 48px;
   align-items: center;
 }
-.hero h1.display { margin: 20px 0 28px; color: #f7f0e2; }
+.hero h1.display { margin: 20px 0 28px; color: #f7f0e2; letter-spacing: -5px; }
 .hero .eyebrow { color: #e0b45c; }
 .hero .lead { margin-bottom: 36px; color: #e9dfc9; }
 .hero .lead strong { color: #f7f0e2; }
