@@ -145,12 +145,44 @@ body {
   font-weight: 700;
 }
 
-/* 목차 하위 확장: 부(h2) / 절(h3) */
-.toc-sub {
-  padding: 2px 0 10px;
-  border-bottom: 1px dashed var(--line);
-  margin-bottom: 4px;
+/* 목차 하위 확장: 부(h2) / 절(h3) — 접이식(아코디언) */
+.toc-chap { border-bottom: 1px solid var(--line); }
+.toc-chap-head {
+  display: flex;
+  align-items: center;
+  gap: 4px;
 }
+.toc-chap-head .toc-chapter { flex: 1; }
+
+/* 토글 화살표 버튼 */
+.toc-toggle {
+  flex: none;
+  width: 30px; height: 30px;
+  display: flex; align-items: center; justify-content: center;
+  background: none; border: none; cursor: pointer;
+  font-size: 13px; color: var(--ink-faint);
+  border-radius: 7px;
+  transition: background .12s, transform .18s;
+}
+.toc-toggle:hover { background: #f0e8d8; color: var(--ink); }
+.toc-toggle-mini { width: 24px; height: 24px; font-size: 11px; }
+
+/* 장 하위 목차: 기본 접힘, .expanded 시 펼침 */
+.toc-sub {
+  max-height: 0;
+  overflow: hidden;
+  transition: max-height .28s ease;
+}
+.toc-chap.expanded .toc-sub { max-height: 4000px; }
+
+/* 부(h2) 행 */
+.toc-h2-row {
+  display: flex;
+  align-items: center;
+  gap: 2px;
+}
+.toc-h2-row .toc-h2 { flex: 1; }
+
 .toc-h2, .toc-h3 {
   display: block;
   width: 100%;
@@ -174,6 +206,14 @@ body {
 }
 .toc-h2:hover { background: #f2ead9; color: var(--accent-deep); }
 .toc-h3:hover { background: #f5efe2; color: var(--ink); }
+
+/* 절(h3) 목록: 부 단위로 접을 수 있음 */
+.toc-h3-wrap {
+  max-height: 4000px;
+  overflow: hidden;
+  transition: max-height .28s ease;
+}
+.toc-h3-wrap.collapsed { max-height: 0; }
 
 /* ---------- 본문 ---------- */
 .reader {

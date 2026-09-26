@@ -187,7 +187,11 @@
       var m = title.match(/^제(\d+)장/);
       var num = m ? m[1] + '장' : (i === 0 ? '서' : (i === chapters.length - 1 ? '발' : (i + 1)));
 
-      // 장 버튼
+      // 장 컨테이너
+      var chapWrap = el('div', 'toc-chap');
+
+      // 장 헤더 행 (제목 + 토글 화살표)
+      var head = el('div', 'toc-chap-head');
       var btn = el('button', 'toc-chapter');
       btn.dataset.idx = i;
       var span = el('span', 'toc-num', (i + 1) + '. ');
@@ -196,27 +200,58 @@
       btn.addEventListener('click', function () {
         goChapter(i, true);
       });
-      tocBody.appendChild(btn);
+      head.appendChild(btn);
 
-      // 하위 부/절 (아코디언)
+      if (sec.parts.length) {
+        var toggle = el('button', 'toc-toggle');
+        toggle.setAttribute('aria-label', '하위 목차 펼치기/접기');
+        toggle.innerHTML = '▾';
+        toggle.addEventListener('click', function (e) {
+          e.stopPropagation();
+          toggleChapter(i);
+        });
+        head.appendChild(toggle);
+      }
+      chapWrap.appendChild(head);
+
+      // 하위 부/절 (접기 가능)
       if (sec.parts.length) {
         var subWrap = el('div', 'toc-sub');
         sec.parts.forEach(function (part, pi) {
           if (part.kind === 'h2') {
+            // 부(h2) 행: 제목 + 자체 토글
+            var h2row = el('div', 'toc-h2-row');
             var h2 = el('div', 'toc-h2');
             h2.textContent = part.title;
             h2.addEventListener('click', function () {
               goToSection(i, pi, undefined, true);
             });
-            subWrap.appendChild(h2);
-            part.subs.forEach(function (sub, si) {
-              var h3 = el('div', 'toc-h3');
-              h3.textContent = sub.title;
-              h3.addEventListener('click', function () {
-                goToSection(i, pi, si, true);
+            h2row.appendChild(h2);
+            if (part.subs.length) {
+              var h2toggle = el('button', 'toc-toggle toc-toggle-mini');
+              h2toggle.innerHTML = '▾';
+              h2toggle.setAttribute('aria-label', '절 목록 펼치기/접기');
+              h2toggle.addEventListener('click', function (e) {
+                e.stopPropagation();
+                togglePart(h2row.nextElementSibling, h2toggle);
               });
-              subWrap.appendChild(h3);
-            });
+              h2row.appendChild(h2toggle);
+            }
+            subWrap.appendChild(h2row);
+
+            // 절(h3) 목록
+            if (part.subs.length) {
+              var h3wrap = el('div', 'toc-h3-wrap');
+              part.subs.forEach(function (sub, si) {
+                var h3 = el('div', 'toc-h3');
+                h3.textContent = sub.title;
+                h3.addEventListener('click', function () {
+                  goToSection(i, pi, si, true);
+                });
+                h3wrap.appendChild(h3);
+              });
+              subWrap.appendChild(h3wrap);
+            }
           } else {
             // h2 없이 바로 h3 (드묾)
             var h3top = el('div', 'toc-h3');
@@ -227,9 +262,30 @@
             subWrap.appendChild(h3top);
           }
         });
-        tocBody.appendChild(subWrap);
+        chapWrap.appendChild(subWrap);
       }
+
+      tocBody.appendChild(chapWrap);
     });
+
+    // 현재 장은 자동으로 펼침
+    var current = tocBody.querySelectorAll('.toc-chap')[currentIdx];
+    if (current) current.classList.add('expanded');
+  }
+
+  // 장 하위 목차 펼치기/접기
+  function toggleChapter(idx) {
+    var chap = tocBody.querySelectorAll('.toc-chap')[idx];
+    if (!chap) return;
+    chap.classList.toggle('expanded');
+  }
+
+  // 부(h2)의 절 목록 펼치기/접기
+  function togglePart(h3wrap, toggleBtn) {
+    if (!h3wrap) return;
+    var collapsed = h3wrap.classList.toggle('collapsed');
+    toggleBtn.innerHTML = collapsed ? '▸' : '▾';
+    toggleBtn.classList.toggle('collapsed', collapsed);
   }
 
   // 목차에서 부/절 클릭 → 해당 장 렌더 후 섹션으로 스크롤
