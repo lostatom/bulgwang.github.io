@@ -35,16 +35,16 @@
   background: var(--grad-gold);
   color: #3a2f28;
 }
-/* ============ 한국어 모드: 제목 텍스트 자간 (-4px: h1~h2, -3px: h3~h6) ============ */
+/* ============ 한국어 모드: 제목 텍스트 자간 (-2px: h1~h2, -1px: h3~h6) ============ */
 html[lang="ko"] h1,
 html[lang="ko"] h2 {
-  letter-spacing: -4px;
+  letter-spacing: -2px;
 }
 html[lang="ko"] h3,
 html[lang="ko"] h4,
 html[lang="ko"] h5,
 html[lang="ko"] h6 {
-  letter-spacing: -3px;
+  letter-spacing: -1px;
 }
 
 /* ============ 영문 모드: 날씬한 폰트 적용 ============ */
