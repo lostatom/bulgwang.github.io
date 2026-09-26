@@ -226,6 +226,34 @@
 }
 .card p { color: var(--muted); font-size: 0.95rem; }
 
+/* 사진 배경 카드 (젊은 불자들과의 소통) */
+.card-photo {
+  position: relative;
+  color: #fff;
+  background-image: url("../images/young-buddhists-bg.jpg");
+  background-size: cover;
+  background-position: center;
+}
+.card-photo::before {
+  content: "";
+  position: absolute;
+  inset: 0;
+  border-radius: inherit;
+  background: linear-gradient(160deg, rgba(22, 16, 12, 0.70), rgba(22, 16, 12, 0.85));
+  z-index: 0;
+}
+.card-photo > * {
+  position: relative;
+  z-index: 1;
+}
+.card-photo h3,
+.card-photo p {
+  color: #fff;
+}
+.card-photo .concept-icon {
+  background: rgba(255, 255, 255, 0.16);
+}
+
 /* 밥할머니 스토리 섹션 배경 */
 .section-babhalmeoni {
   position: relative;
