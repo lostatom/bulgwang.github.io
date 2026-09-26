@@ -646,3 +646,16 @@
 @media (max-width: 720px) {
   .figure-row { grid-template-columns: 1fr; }
 }
+/* 후원 카드 모바일 레이아웃 (아이폰 좁은 화면 대응) */
+@media (max-width: 640px) {
+  .figure-row { gap: 20px; }
+  .donate-box { padding: 24px 16px; }
+  .acct {
+    flex-wrap: wrap;
+    white-space: normal;
+    justify-content: center;
+    gap: 8px;
+  }
+  .acct code { word-break: break-all; }
+  .donate-box .heading { font-size: 1.5rem; }
+}
