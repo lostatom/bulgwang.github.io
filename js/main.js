@@ -360,4 +360,36 @@ document.addEventListener("DOMContentLoaded", () => {
     });
   }
   initLeafCardTilt();
+
+  // 불광사 안내 팝업 (한국어 전용, 12초 표시)
+  const initBulgwangsaNotice = () => {
+    const notice = document.getElementById("bulgwangsa-notice");
+    if (!notice) return;
+
+    let timer = null;
+    const show = () => { notice.hidden = false; };
+    const hide = () => {
+      if (timer) { clearTimeout(timer); timer = null; }
+      notice.hidden = true;
+    };
+
+    const closeBtn = notice.querySelector(".bulgwangsa-notice-close");
+    if (closeBtn) closeBtn.addEventListener("click", hide);
+
+    // 언어 전환(영문) 시 팝업 숨김
+    const langObserver = new MutationObserver(() => {
+      if (document.documentElement.lang === "en") hide();
+    });
+    langObserver.observe(document.documentElement, {
+      attributes: true,
+      attributeFilter: ["lang"],
+    });
+
+    // 한국어 모드에서만 12초간 표시
+    if (document.documentElement.lang !== "en") {
+      show();
+      timer = setTimeout(hide, 12000);
+    }
+  };
+  initBulgwangsaNotice();
 });
