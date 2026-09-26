@@ -1,4 +1,5 @@
 User-agent: *
 Allow: /
+Disallow: /dhammabook/
 
 Sitemap: https://bulgwangdong.kr/sitemap.xml

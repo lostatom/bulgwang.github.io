@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
+<title>부처님과 그의 담마 — 한국어 번역</title>
+<meta name="description" content="암베드카르 저, 불광동 절 편집부 역 — 『부처님과 그의 담마』 독서본">
+<!-- 한국어 명조체: 외부 CDN 없이 시스템 서체만 사용 (완전 오프라인) -->
+<link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+<!-- 상단 바 -->
+<header class="topbar">
+  <button class="icon-btn" id="toc-btn" aria-label="목차 열기" title="목차">☰</button>
+  <span class="topbar-title" id="topbar-title">부처님과 그의 담마</span>
+  <button class="icon-btn" id="quotes-btn" aria-label="저장한 경구 보기" title="저장한 경구">✦</button>
+  <span class="topbar-sub">암베드카르 저 · 불광동 절 편집부 역</span>
+</header>
+
+<!-- 목차 드로어 -->
+<div class="drawer-overlay" id="toc-overlay"></div>
+<nav class="toc-drawer" id="toc-drawer" aria-label="목차">
+  <div class="toc-head">
+    <h2>부처님과 그의 담마</h2>
+    <div class="toc-meta">
+      암베드카르 지음<br>
+      불광동 절 편집부 옮김
+    </div>
+  </div>
+  <div class="toc-body" id="toc-body"></div>
+</nav>
+
+<!-- 경구 저장 툴팁 -->
+<div class="quote-tip" id="quote-tip" style="display:none;">✦ 경구 저장</div>
+
+<!-- 본문 -->
+<main class="reader" id="reader"></main>
+
+<!-- 하단 페이지 이동 -->
+<div class="pager">
+  <button class="pager-btn" id="prev-btn"><span class="dir">‹</span> 이전 장</button>
+  <span class="pager-pos" id="pager-pos">1 / 10</span>
+  <button class="pager-btn" id="next-btn">다음 장 <span class="dir">›</span></button>
+</div>
+
+<!-- 토스트 -->
+<div class="toast" id="toast"></div>
+
+<script src="data.js"></script>
+<script src="app.js"></script>
+</body>
+</html>

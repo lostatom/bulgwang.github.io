@@ -1,0 +1,173 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
+<title>저장한 경구 — 부처님과 그의 담마</title>
+<link rel="stylesheet" href="style.css">
+<style>
+  .quotes-wrap { max-width: 760px; margin: 0 auto; padding: 90px 24px 100px; }
+  .quotes-wrap h1 {
+    font-size: 1.7rem; font-weight: 700; letter-spacing: -1px;
+    margin-bottom: 6px;
+  }
+  .quotes-sub { color: var(--ink-faint); font-size: 14px; margin-bottom: 28px; }
+  .q-item {
+    background: var(--paper-bright);
+    border: 1px solid var(--line);
+    border-radius: 14px;
+    padding: 16px 20px;
+    margin-bottom: 16px;
+    position: relative;
+  }
+  .q-text {
+    font-size: 16.5px;
+    line-height: 1.85;
+    color: var(--ink);
+    padding-right: 30px;
+    word-break: keep-all;
+  }
+  .q-meta {
+    margin-top: 10px;
+    font-size: 12.5px;
+    color: var(--ink-faint);
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+  }
+  .q-chapter {
+    color: var(--accent-deep);
+    font-weight: 700;
+    cursor: pointer;
+    text-decoration: underline;
+    text-underline-offset: 3px;
+    border: none; background: none; font-family: inherit;
+    padding: 0; font-size: 12.5px;
+  }
+  .q-del {
+    position: absolute; top: 12px; right: 12px;
+    width: 28px; height: 28px; border-radius: 8px;
+    border: 1px solid var(--line); background: none;
+    color: var(--ink-faint); cursor: pointer; font-size: 16px;
+    display: flex; align-items: center; justify-content: center;
+    transition: all .15s;
+  }
+  .q-del:hover { color: #a33; border-color: #a33; background: #fff5f5; }
+  .q-empty {
+    text-align: center; color: var(--ink-faint); padding: 80px 20px;
+    font-size: 17px; line-height: 2;
+  }
+  .back-btn {
+    display: inline-block;
+    font-family: var(--serif);
+    color: var(--accent-deep);
+    text-decoration: none;
+    font-size: 15px;
+    margin-bottom: 20px;
+    border: none; background: none; cursor: pointer;
+    padding: 6px 0;
+  }
+  .back-btn:hover { text-decoration: underline; }
+  .q-tools { margin-bottom: 18px; display: flex; gap: 10px; }
+  .q-tool-btn {
+    font-family: var(--serif); font-size: 13.5px;
+    background: var(--paper-bright); border: 1px solid var(--line);
+    color: var(--ink); border-radius: 10px; padding: 8px 14px; cursor: pointer;
+    transition: all .15s;
+  }
+  .q-tool-btn:hover { border-color: var(--accent); background: #f0e8d8; }
+</style>
+</head>
+<body>
+<div class="quotes-wrap">
+  <button class="back-btn" onclick="location.href='index.html'">‹ 독서본으로 돌아가기</button>
+  <h1>저장한 경구</h1>
+  <div class="quotes-sub">여러분이 마음에 새긴 부처님의 말씀입니다.</div>
+
+  <div class="q-tools">
+    <button class="q-tool-btn" id="copy-all">전체 복사</button>
+    <button class="q-tool-btn" id="clear-all">전체 삭제</button>
+  </div>
+
+  <div id="q-list"></div>
+</div>
+
+<div class="toast" id="toast"></div>
+
+<script>
+(function () {
+  var listEl = document.getElementById('q-list');
+  var toast = document.getElementById('toast');
+  function lsGet(k, f) { try { var v = localStorage.getItem(k); return v === null ? f : JSON.parse(v); } catch (e) { return f; } }
+  function lsSet(k, v) { try { localStorage.setItem(k, JSON.stringify(v)); } catch (e) {} }
+  function showToast(m) { toast.textContent = m; toast.classList.add('show'); clearTimeout(showToast._t); showToast._t = setTimeout(function(){ toast.classList.remove('show'); }, 2000); }
+  function esc(s){ return String(s).replace(/[&<>"]/g, function(c){ return {'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;'}[c]; }); }
+
+  function render() {
+    var quotes = lsGet('bd_quotes', []);
+    listEl.innerHTML = '';
+    if (!quotes.length) {
+      listEl.innerHTML = '<div class="q-empty">아직 저장한 경구가 없습니다.<br>독서본에서 마음에 드는 글귀를 드래그한 뒤<br>우클릭(또는 길게 누르기)으로 저장해 보세요.</div>';
+      return;
+    }
+    quotes.forEach(function (q, i) {
+      var item = document.createElement('div');
+      item.className = 'q-item';
+      item.innerHTML =
+        '<div class="q-text">' + esc(q.text) + '</div>' +
+        '<div class="q-meta">' +
+          '<button class="q-chapter" data-ch="' + q.ch + '">' + esc(q.title || ('장 ' + (q.ch + 1))) + '</button>' +
+          '<span>' + (q.ts ? new Date(q.ts).toLocaleDateString('ko-KR') : '') + '</span>' +
+        '</div>';
+      var del = document.createElement('button');
+      del.className = 'q-del';
+      del.innerHTML = '✕';
+      del.title = '삭제';
+      del.addEventListener('click', function () {
+        quotes.splice(i, 1);
+        lsSet('bd_quotes', quotes);
+        render();
+        showToast('삭제했습니다');
+      });
+      item.appendChild(del);
+      listEl.appendChild(item);
+    });
+
+    // 장 이동 링크
+    listEl.querySelectorAll('.q-chapter').forEach(function (btn) {
+      btn.addEventListener('click', function () {
+        var ch = parseInt(btn.dataset.ch, 10);
+        localStorage.setItem('bd_lastChapter', JSON.stringify(ch));
+        location.href = 'index.html';
+      });
+    });
+  }
+
+  document.getElementById('copy-all').addEventListener('click', function () {
+    var quotes = lsGet('bd_quotes', []);
+    var txt = quotes.map(function (q) {
+      return '【' + (q.title || '') + '】\n' + q.text;
+    }).join('\n\n— — —\n\n');
+    if (!txt) { showToast('저장된 경구가 없습니다'); return; }
+    if (navigator.clipboard && navigator.clipboard.writeText) {
+      navigator.clipboard.writeText(txt).then(function () { showToast('전체 복사했습니다'); });
+    } else {
+      showToast('이 브라우저는 복사를 지원하지 않습니다');
+    }
+  });
+
+  document.getElementById('clear-all').addEventListener('click', function () {
+    var quotes = lsGet('bd_quotes', []);
+    if (!quotes.length) { showToast('저장된 경구가 없습니다'); return; }
+    if (confirm('저장한 모든 경구를 삭제할까요?')) {
+      lsSet('bd_quotes', []);
+      render();
+      showToast('전체 삭제했습니다');
+    }
+  });
+
+  render();
+})();
+</script>
+</body>
+</html>
