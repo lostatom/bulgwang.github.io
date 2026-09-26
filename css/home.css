@@ -279,7 +279,7 @@
   pointer-events: none;
 }
 
-/* 선한 영향력 섹션 배경 (사진 + 어두운 비넷 오버레이) */
+/* 선한 영향력 섹션 배경 (사진 + 흰색 그라디언트 마스크) */
 .section-good-influence {
   position: relative;
   background-image: url("../images/good-influence-section-bg.jpg");
@@ -291,12 +291,12 @@
   content: "";
   position: absolute;
   inset: 0;
-  background: radial-gradient(ellipse at 50% 38%, rgba(20, 14, 10, 0.10) 0%, rgba(20, 14, 10, 0.58) 100%);
+  background: linear-gradient(180deg, rgba(251, 246, 236, 0.68) 0%, rgba(251, 246, 236, 0.82) 100%);
   z-index: -1;
   pointer-events: none;
 }
 .section-good-influence .heading {
-  color: #fff;
+  color: var(--ink);
 }
 
 /* 밥할머니 스토리 타임라인 */
