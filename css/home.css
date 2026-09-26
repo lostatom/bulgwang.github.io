@@ -291,7 +291,7 @@
   content: "";
   position: absolute;
   inset: 0;
-  background: radial-gradient(ellipse at 50% 38%, rgba(20, 14, 10, 0.55) 0%, rgba(20, 14, 10, 0.82) 100%);
+  background: radial-gradient(ellipse at 50% 38%, rgba(20, 14, 10, 0.10) 0%, rgba(20, 14, 10, 0.58) 100%);
   z-index: -1;
   pointer-events: none;
 }
