@@ -279,6 +279,26 @@
   pointer-events: none;
 }
 
+/* 선한 영향력 섹션 배경 (사진 + 어두운 비넷 오버레이) */
+.section-good-influence {
+  position: relative;
+  background-image: url("../images/good-influence-section-bg.jpg");
+  background-size: cover;
+  background-position: center;
+  isolation: isolate;
+}
+.section-good-influence::before {
+  content: "";
+  position: absolute;
+  inset: 0;
+  background: radial-gradient(ellipse at 50% 38%, rgba(20, 14, 10, 0.55) 0%, rgba(20, 14, 10, 0.82) 100%);
+  z-index: -1;
+  pointer-events: none;
+}
+.section-good-influence .heading {
+  color: #fff;
+}
+
 /* 밥할머니 스토리 타임라인 */
 .timeline {
   display: flex;
